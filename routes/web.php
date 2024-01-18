@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', HomeController::class)->name('index');
+
+Route::controller(ProjectController::class)->group(function(){
+
+    Route::get('/proyectos','index')->name('proyectos.index');
+
+    Route::get('/proyectos/crear','create')->name('proyectos.create');
+
+    Route::get('/proyectos/{id}','show')->name('proyectos.show');
+
+    Route::post('/proyectos','store')->name('proyectos.store');
+
+    Route::get('/proyectos/{id}/edit','edit')->name('proyectos.edit');
+    Route::put('/proyectos/{proyecto}','update')->name('proyectos.update'); //se puede usar post tranquilamente
+    Route::delete('/proyectos/{proyecto}','destroy')->name('proyectos.destroy');
 });

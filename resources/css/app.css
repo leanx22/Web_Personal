@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+
+    .btn_icon{
+        @apply bg-[#4ea5fc] border border-[#4ea5fc]
+        rounded-full shadow-md hover:bg-[#212121] hover:scale-90 transition 
+        duration-500 ease-in-out min-h-[65px] min-w-[65px] md:min-h-[100px] md:min-w-[100px] flex items-center justify-center
+    }
+
+    .btn_default{
+        @apply text-white font-bold text-lg bg-[#4ea5fc] border border-[#4ea5fc] py-1 md:px-5 
+        rounded-full min-w-20 md:min-w-36 min-h-12 shadow-md hover:bg-[#212121] transition 
+        duration-500 ease-in-out
+    }
+
+    .auto_fade{
+        @apply transition duration-500 ease-in-out
+    }
+
+    .hover_zoom_in{
+        @apply hover:scale-105 transition duration-300 ease-out
+    }
+
+    .hover_zoom_out{
+        @apply hover:scale-95 transition duration-300 ease-out
+    }
+
+    .card_body{
+        @apply flex flex-col min-h-[420px] xl:min-w-[275px] 2xl:w-[320px] max-w-[320px] 
+        sm:mx-2 md:mx-2 xl:mx-2 2xl:mx-9 mb-10 
+        bg-white shadow-xl origin-center hover:scale-105
+    }
+
+    .boxify{
+        @apply bg-white rounded-xl p-2 shadow-lg max-w-[144px] max-h-[144px] m-2
+    }
+
+    .pill{
+        @apply bg-yellow-300/50 border-2 border-yellow-300 min-h-5 min-w-10 px-2 
+        rounded-full text-[12px] text-center font-bold cursor-default
+    }
+}
