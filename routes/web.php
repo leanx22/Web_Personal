@@ -27,7 +27,6 @@ Route::controller(ProjectController::class)->group(function(){
     Route::get('/proyectos/{id}','show')->name('proyectos.show');
 
     Route::post('/proyectos','store')->name('proyectos.store');
-
     Route::get('/proyectos/{id}/edit','edit')->name('proyectos.edit');
     Route::put('/proyectos/{proyecto}','update')->name('proyectos.update'); //se puede usar post tranquilamente
     Route::delete('/proyectos/{proyecto}','destroy')->name('proyectos.destroy');

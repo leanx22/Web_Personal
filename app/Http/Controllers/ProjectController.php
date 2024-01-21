@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 class ProjectController extends Controller
 {
@@ -11,7 +12,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('projects.index');
+        $projects = Project::all();
+        return view('projects.index',['projects',$projects]);
     }
 
     /**
@@ -27,7 +29,49 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'img'=>['sometimes','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
+            'title'=>['required','min:3'],
+            'description'=>['required','min:3'],
+            'slug'=>['required','min:3','lowercase'], //no esta completamente bien validado!
+            'visible'=>['boolean']
+            //tags sin validar!            
+        ]);
+        
+        $project = new Project();
+        $project->title = $request->title;
+        $project->slug = $request->slug;
+        $imageSaveResponse = $this->saveImage($request); 
+        $project->image = $imageSaveResponse == false ? null : $imageSaveResponse;
+        $project->tags = $request->tags;
+        $project->visible = $request->visible;
+        $project->save();
+        //retornar a la pagina de proyectos con un popup de guardado correcto!       
+    }
+
+    public function saveImage(Request $request):bool|string
+    {
+
+        $image = $request->file('img');
+        if($image == null)
+        {
+            return false;
+        }
+
+        $imgURL = "projects/".$request->slug.".".$image->clientExtension();        
+        if($image!=null)
+        {
+            try
+            {
+                $image->move(public_path('img/projects/'),$imgURL);
+                return $imgURL;
+            } 
+            catch (\Exception $ex)
+            {
+                return response()->view('', [], 500); //todo: cambiar la vista retornada!
+            }
+            
+        }
     }
 
     /**
