@@ -12,8 +12,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('projects.index',['projects',$projects]);
+        $projects = Project::all(); //Entiendo que se puede usar paginate, sin embargo, no voy a tener nunca tantos registros.
+        $regs = count($projects);
+        return view('projects.index',['projects'=>$projects, 'count'=>$regs]);
     }
 
     /**
@@ -21,7 +22,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        return view('projects.create',['title'=>'Nuevo proyecto', 'action'=>'Crear proyecto']);
     }
 
     /**
@@ -30,11 +31,13 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'img'=>['sometimes','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
+            'img'=>['nullable','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
             'title'=>['required','min:3'],
             'description'=>['required','min:3'],
-            'slug'=>['required','min:3','lowercase'], //no esta completamente bien validado!
-            'visible'=>['boolean']
+            'slug'=>['required','min:3'], //no esta completamente bien validado!
+            'github'=>['nullable','url'],
+            'web'=>['nullable','url'],
+            'visible'=>['nullable','boolean']
             //tags sin validar!            
         ]);
         
@@ -44,9 +47,10 @@ class ProjectController extends Controller
         $imageSaveResponse = $this->saveImage($request); 
         $project->image = $imageSaveResponse == false ? null : $imageSaveResponse;
         $project->tags = $request->tags;
-        $project->visible = $request->visible;
-        $project->save();
-        //retornar a la pagina de proyectos con un popup de guardado correcto!       
+        $project->visible = $request->visible == null ? false:$request->visible;
+        $actionSuccess = $project->save(); //ahora a configurar la vista y el formulario ahí, con ayuda del tutorial y testear
+        //retornar a la pagina de proyectos con un popup de guardado correcto!
+        return redirect()->route('proyectos.index',['actionSuccess'=>$actionSuccess]);    
     }
 
     public function saveImage(Request $request):bool|string

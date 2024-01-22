@@ -31,3 +31,5 @@ Route::controller(ProjectController::class)->group(function(){
     Route::put('/proyectos/{proyecto}','update')->name('proyectos.update'); //se puede usar post tranquilamente
     Route::delete('/proyectos/{proyecto}','destroy')->name('proyectos.destroy');
 });
+
+Route::get('/dashboard')->name('dashboard.index');

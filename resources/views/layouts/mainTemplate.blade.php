@@ -9,7 +9,7 @@
     @vite('resources/css/app.css')
     <title>@yield('title')</title>
 </head>
-<body>
+<body class="bg-gray-200">
     @yield('body')
 </body>
 </html>

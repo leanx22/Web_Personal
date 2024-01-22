@@ -42,4 +42,8 @@
         @apply bg-yellow-300/50 border-2 border-yellow-300 min-h-5 min-w-10 px-2 
         rounded-full text-[12px] text-center font-bold cursor-default
     }
+
+    .little_error{
+        @apply text-red-400 font-semibold
+    }
 }
