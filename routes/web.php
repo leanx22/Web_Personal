@@ -16,20 +16,20 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::get('/', HomeController::class)->name('index');
-
 Route::controller(ProjectController::class)->group(function(){
 
     Route::get('/proyectos','index')->name('proyectos.index');
-
+    
     Route::get('/proyectos/crear','create')->name('proyectos.create');
-
-    Route::get('/proyectos/{id}','show')->name('proyectos.show');
-
     Route::post('/proyectos','store')->name('proyectos.store');
-    Route::get('/proyectos/{id}/edit','edit')->name('proyectos.edit');
-    Route::put('/proyectos/{proyecto}','update')->name('proyectos.update'); //se puede usar post tranquilamente
-    Route::delete('/proyectos/{proyecto}','destroy')->name('proyectos.destroy');
+
+    Route::get('/proyectos/{project}','show')->name('proyectos.show');
+    Route::get('/proyectos/{project}/edit','edit')->name('proyectos.edit');
+    Route::put('/proyectos/{project}','update')->name('proyectos.update'); //se puede usar post tranquilamente
+    
+    Route::delete('/proyectos/{project}','destroy')->name('proyectos.destroy');
 });
 
 Route::get('/dashboard')->name('dashboard.index');
+
+Route::get('/{section?}', HomeController::class)->name('index');

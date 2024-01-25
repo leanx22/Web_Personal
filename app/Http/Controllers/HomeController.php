@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $projects = Project::where('visible', 1)->get();
+        $projects = Project::where('visible', 1)->orderBy('order','asc')->get();
         $odd = count($projects) % 2 == 0 ? true:false;
         return view('index',['projects'=>$projects, 'odd'=>$odd]);
     }

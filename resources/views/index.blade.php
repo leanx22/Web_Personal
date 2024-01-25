@@ -51,7 +51,7 @@
 
 <!--AboutMe-->
 <section id="aboutme">
-  <div class="p-4 pt-[150px] mb-[150px] lg:px-11 py-auto bg-gradient-to-b from-gray-200 to-white grid grid-flow-col grid-cols-12">
+  <div class="p-4 pt-[150px] pb-[150px] lg:px-11 py-auto bg-gradient-to-b from-gray-200 to-white grid grid-flow-col grid-cols-12">
     
     <div class="flex flex-col justify-center items-center lg:items-start lg:justify-start lg:ps-10 col-span-12 lg:col-span-5 min-h-96 p-2 lg:pt-8 rounded-lg lg:rounded-s-xl lg:rounded-e-none">
       <h2 class="text-[48px] lg:text-[72px] text-gray-700 font-bold text-center lg:text-left">Sobre mí</h2>
@@ -76,43 +76,43 @@
   
   <div class="bg-sky-200 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">
 
-    <!--Card-->
-    <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
-      <!--Superior-->
-      <div class="relative">
-        <img class="rounded-t-lg min-w-full min-h-full" src="{{asset('img/goku.jpg')}}" alt="">
-        <!--Tags-->
-        <div class="absolute inset-0 flex items-end justify-end p-4">
-          <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">PHP</label>
-          <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">Laravel</label>
-          <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">TailwindCSS</label>
-        </div>              
-      </div>
-      <!--Inferior-->
-      <div class="flex flex-col mt-3">
-        <h2 class="text-[24px] font-bold ms-4">Titulo del proyecto</h2>
-        <div class="flex items-center p-1 ps-4 min-h-[138px] md:min-h-[124px] lg:min-h-[110px]">
-          <p class="text-start text-[15px] lg:text-[18px]">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Iure quis corporis soluta eligendi earum minus sint inventore architecto recusandae.
-            Iure quis corporis soluta eligendi earum mi.
-          </p>
+    @foreach ($projects as $project)
+      <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
+        <!--Superior-->
+        <div class="relative">
+          <img class="rounded-t-lg min-w-full min-h-full" src="{{asset('img/'.$project->image)}}" alt="Imagen del proyecto">
+          <!--Tags-->
+          <div class="absolute inset-0 flex items-end justify-end p-4">
+            <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">PHP</label>
+            <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">Laravel</label>
+            <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">TailwindCSS</label>
+          </div>              
         </div>
-        
+        <!--Inferior-->
+        <div class="flex flex-col mt-3">
+          <h2 class="text-[24px] font-bold ms-4">{{$project->title}}</h2>
+          <div class="flex items-center p-1 ps-4 min-h-[138px] md:min-h-[124px] lg:min-h-[110px]">
+            <p class="text-start text-[15px] lg:text-[18px]">
+              {!! $project->description !!}
+            </p>
+          </div>
+          
+        </div>
+        <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">
+          <a href="{{route('proyectos.show',$project)}}" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade text-center">
+            <p class="my-1">Ver mas</p>
+          </a>
+        </div>
       </div>
-      <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">
-        <button class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade hover:bg-rose-800">Descargar</button>
-        <button class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade hover:bg-lime-600">Ver Web</button>
-        <button class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade hover:bg-blue-600">Github</button>
-      </div>
-    </div>
-    <!--EndCard-->
+    @endforeach    
 
-    <!--Si es impar:-->
-    <div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">
-      <label class="text-[28px] text-center text-gray-400">Más proyectos próximamente...</label>
-    </div>
-    <!--end-->
+    @if ($odd == false)
+      <!--Si es impar:-->
+      <div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">
+        <label class="text-[28px] text-center text-gray-400">Más proyectos próximamente...</label>
+      </div>
+      <!--end-->
+    @endif    
 
   </div>
 

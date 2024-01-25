@@ -12,7 +12,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all(); //Entiendo que se puede usar paginate, sin embargo, no voy a tener nunca tantos registros.
+        $projects = Project::orderBy('order','asc')->get();//Entiendo que se puede usar paginate, sin embargo, no voy a tener nunca tantos registros.
         $regs = count($projects);
         return view('projects.index',['projects'=>$projects, 'count'=>$regs]);
     }
@@ -34,7 +34,7 @@ class ProjectController extends Controller
             'img'=>['nullable','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
             'title'=>['required','min:3'],
             'description'=>['required','min:3'],
-            'slug'=>['required','min:3'], //no esta completamente bien validado!
+            'slug'=>['required','min:3','unique:projects'], //no esta completamente bien validado! tal vez con el setter o en el front?
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
             'visible'=>['nullable','boolean']
@@ -46,10 +46,11 @@ class ProjectController extends Controller
         $project->slug = $request->slug;
         $imageSaveResponse = $this->saveImage($request); 
         $project->image = $imageSaveResponse == false ? null : $imageSaveResponse;
+        $project->description = $request->description;
         $project->tags = $request->tags;
         $project->visible = $request->visible == null ? false:$request->visible;
-        $actionSuccess = $project->save(); //ahora a configurar la vista y el formulario ahí, con ayuda del tutorial y testear
-        //retornar a la pagina de proyectos con un popup de guardado correcto!
+        //$project->order = $request->order;
+        $actionSuccess = $project->save();
         return redirect()->route('proyectos.index',['actionSuccess'=>$actionSuccess]);    
     }
 
@@ -81,25 +82,42 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        return view('projects.show',['curso'=>$id]); //aca tengo que pasar la data del curso, no el id. cambiar.
+        return view('projects.show',['project'=>$project]); //aca tengo que pasar la data del curso, no el id. cambiar.
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return view('projects.edit',['title'=>'Editar', 'action'=>'Editar proyecto','project'=>$project]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'img'=>['nullable','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
+            'title'=>['required','min:3'],
+            'description'=>['required','min:3'],
+            'slug'=>['required','min:3','unique:projects'], //no esta completamente bien validado! tal vez con el setter o en el front?
+            'github'=>['nullable','url'],
+            'web'=>['nullable','url'],
+            'visible'=>['nullable','boolean']
+            //tags sin validar!            
+        ]);
+
+        if($request->img != null)
+        {
+            $imageSaveResponse = $this->saveImage($request); 
+            $project->image = $imageSaveResponse == false ? null : $imageSaveResponse;
+        }
+
+        return $project;
     }
 
     /**

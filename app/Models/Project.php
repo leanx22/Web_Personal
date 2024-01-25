@@ -13,6 +13,11 @@ class Project extends Model
     protected $table = "projects";
     public $timestamps = false;
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     protected function slug():Attribute
     {
         return new Attribute(
