@@ -48,14 +48,14 @@
         </div>                
 
         <label class="font-light text-gray-500 mt-4">Github (opcional)</label>
-        <input type="text" name="github" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://github.com/user/example-repo">
+        <input type="text" name="github" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://github.com/user/example-repo" value="{{old('github',$links->github)}}">
 
         @error('github')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">WebLink (opcional)</label>
-        <input type="text" name="web" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://windows2.net/home">
+        <input type="text" name="web" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://windows2.net/home" value="{{old('web',$links->web)}}">
 
         @error('web')
             <small class="little_error">{{$message}}</small>
@@ -68,14 +68,21 @@
             <small class="little_error">{{$message}}</small>
         @enderror
 
-        <label class="font-light text-gray-500 mt-4">Visible en la página principal:</label>
-        <input type="checkbox" name="visible" class="text-[14px] p-2" value="1" {{$project->visible == 1 ? 'checked':''}}>
+        <span class="mt-4 mb-2 flex items-center ms-2">
+            <label for="visibleCheckbox" class="font-light text-gray-500">Visible en la página principal:</label>
+            <input type="checkbox" name="visible" id="visibleCheckbox" class="text-[14px] p-2 w-[24px] h-[24px] ms-2" value="1" {{$project->visible == 1 ? 'checked':''}}>
+        </span>
 
         @error('visible')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <button type="submit" class="bg-lime-500 rounded-md p-2 m-2 text-white font-semibold">Guardar</button>
+    </form>
+    <form action="{{route('proyectos.destroy',$project->id)}}" method="POST" class="bg-white md:max-w-[700px] mx-4 md:mx-auto rounded-md p-4 flex flex-col shadow-lg">
+        @csrf
+        @method('DELETE')
+        <button class="bg-red-300 rounded-md p-2">Eliminar proyecto</button>
     </form>
 </div>
 

@@ -37,7 +37,7 @@ class ProjectController extends Controller
             'img'=>['required','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
             'title'=>['required','min:3'],
             'description'=>['required','min:3'],
-            'slug'=>['required','min:3','unique:projects','regex:/^[a-zA-Z\-]+$/'], //tengo que validar que no contenga espacios y solo letras+guiones medios
+            'slug'=>['required','min:3','unique:projects','regex:/^[a-zA-Z\-]+$/'],
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
             'tags'=>['required','string', 'regex:/^[a-zA-Z0-9,]+$/'],
@@ -124,7 +124,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit',['title'=>'Editar', 'action'=>'Editar proyecto','project'=>$project]);
+        $links = Link::where('project_id',$project->id)->first();        
+        return view('projects.edit',['title'=>'Editar', 'action'=>'Editar proyecto','project'=>$project,'links'=>$links]);
     }
 
     /**
@@ -139,7 +140,7 @@ class ProjectController extends Controller
             'img'=>['nullable','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
             'title'=>['required','min:3'],
             'description'=>['required','min:3'],
-            'slug'=>['required','min:3','unique:projects','regex:/^[a-zA-Z\-]+$/'], //no esta completamente bien validado! tal vez con el setter o en el front?
+            'slug'=>['required','min:3','unique:projects,slug,' . $project->id,'regex:/^[a-zA-Z\-]+$/'],
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
             'tags'=>'regex:/^[a-zA-Z0-9,]+$/',
@@ -151,15 +152,16 @@ class ProjectController extends Controller
             unlink(public_path('img/').$oldData->image);
             $imageURL = $this->saveImage($request);            
         }
-        else //si no le paso img
-        {
-            //Renombro la imagen existente con el nuevo slug
+        else //Si no le paso img:
+        {            
+            //Lo unico que hago es cambiarle el nombre a la imagen ya existente por el nuevo slug ingresado.
             $extension = pathinfo(public_path('img/').$oldData->image,PATHINFO_EXTENSION);
             if(rename(public_path('img/').$oldData->image, public_path('img/projects/').$request->slug.'.'.$extension))
             {
                 $imageURL = 'projects/'.$request->slug.'.'.$extension;
-            }//En caso de error coloco un placeHolder
-            else{
+            }
+            else //Si hay algun error, coloco un placeholder.
+            {
                 $imageURL = 'projects/extra/no_image.jpg';
             }            
         }
@@ -168,11 +170,16 @@ class ProjectController extends Controller
             'title'=>$request->title,
             'slug'=>$request->slug,
             'description'=>$request->description,
-            'image'=>$imageURL,
+            'image'=>$imageURL,            
             'tags'=>$request->tags,
-            'visible'=>$request->visible,
+            'visible'=>$request->visible == null ? false:$request->visible,
         ]);
 
+        $links = Link::where('project_id',$project->id)->first();
+        $links->github = $request->github;
+        $links->web = $request->web;
+        $links->save();
+        
         return redirect()->route('proyectos.index',['success'=>$success]);
     }
 
@@ -181,6 +188,9 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::where('id',$id)->first();
+        unlink(public_path('img/').$project->image);
+        $success = $project->delete();
+        return redirect()->route('proyectos.index',['success'=>$success]);
     }
 }

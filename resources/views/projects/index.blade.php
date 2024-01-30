@@ -27,11 +27,9 @@
                 </p>
             </div>
         </div>
-        <div class="flex justify-between md:items-center mt-2 p-1 min-w-[350px] max-w-[350px] md:min-w-full md:justify-center">
+        <div class="flex justify-between md:items-center mt-2 p-1 min-w-[250px] max-w-[250px] md:min-w-full md:justify-end">
             <a href="{{route('proyectos.show',$project)}}" class="p-2 bg-indigo-400 rounded-md min-w-[112px] text-[14px] text-center text-white font-bold">View</a>
-            <a href="{{route('proyectos.edit',$project)}}" class="p-2 bg-blue-400 rounded-md min-w-[112px] text-[14px] text-center text-white font-bold md:mx-4">Edit</a>
-            <a class="p-2 bg-red-400 rounded-md min-w-[112px] text-[14px] text-center text-white font-bold">Delete</a>
-
+            <a href="{{route('proyectos.edit',$project)}}" class="p-2 bg-blue-400 rounded-md min-w-[112px] text-[14px] text-center text-white font-bold md:mx-4">Edit</a>                
         </div>
     </div>
     @endforeach    
