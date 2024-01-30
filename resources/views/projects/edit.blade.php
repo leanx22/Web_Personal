@@ -17,34 +17,34 @@
         <h2 class="font-semibold text-gray-400 text-[24px]">{{$action}}</h2>
         
         <label class="font-light text-gray-500 mt-4">Título</label>
-        <input type="text" name="title" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Windows 2!" required value={{old('title',$project->title)}}>
+        <input type="text" name="title" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Nuevo titulo" required value={{old('title',$project->title)}}>
 
         @error('name')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Slug</label>
-        <input type="text" name="slug" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Ej: un-link-increíble" required value={{old('slug',$project->slug)}}>
+        <input type="text" name="slug" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Ej: un-slug-nuevo" required value={{old('slug',$project->slug)}}>
 
         @error('slug')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Descripción</label>
-        <textarea name="description" rows="5" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Una bonita descripción..." required>{{old('description',$project->description)}}</textarea>
+        <textarea name="description" rows="5" class="bg-gray-100 rounded-lg text-[14px] p-2" required>{{old('description',$project->description)}}</textarea>
 
         @error('description')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Imagen</label>
-        <small class="font-light text-gray-500">(En caso de no seleccionar ningún archivo se dejará la imagen anterior.)</small>
+        <small class="font-light text-gray-500">(Solo JPG/JPEG)</small>
         @error('img')
             <small class="little_error">{{$message}}</small>
         @enderror
-        <div class="flex flex-col md:flex-row md:items-end md:justify-center mt-2">
-            <!--<img src="{{asset('img/'.$project->image)}}" class="max-w-[250px] rounded-md border-4 border-blue-400 shadow-md">-->
-            <input type="file" name="img" value="{{old('img')}}" class="text-[14px] p-2">
+        <div class="flex flex-col items-center mt-4">
+            <img src="{{asset('img/'.$project->image)}}" class="max-w-[250px] rounded-md border-4 border-blue-400 shadow-md">
+            <input type="file" name="img" value="{{old('img')}}" class="text-[14px] p-2" onchange="">
         </div>                
 
         <label class="font-light text-gray-500 mt-4">Github (opcional)</label>

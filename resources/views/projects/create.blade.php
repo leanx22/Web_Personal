@@ -31,7 +31,7 @@
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Descripción</label>
-        <textarea name="description" rows="5" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Una bonita descripción..." value={{old('description')}} required></textarea>
+        <textarea name="description" rows="5" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Una bonita descripción..." required>{{old('description')}}</textarea>
 
         @error('description')
             <small class="little_error">{{$message}}</small>

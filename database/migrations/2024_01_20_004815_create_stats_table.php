@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('views')->default(0);
             $table->integer('interactions')->default(0);
             $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

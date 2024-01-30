@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProjectController;
 
 /*
@@ -16,20 +17,35 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::controller(ProjectController::class)->group(function(){
+Route::controller(ProjectController::class)
+->group(function(){
 
-    Route::get('/proyectos','index')->name('proyectos.index');
+    Route::middleware('auth')->group(function(){
+
+        Route::get('/proyectos','index')->name('proyectos.index');
+
+        Route::get('/proyectos/crear','create')->name('proyectos.create');
+        Route::post('/proyectos','store')->name('proyectos.store');
+
+        Route::get('/proyectos/{project}/edit','edit')->name('proyectos.edit');
+        Route::put('/proyectos/{project}','update')->name('proyectos.update'); //se puede usar post tranquilamente
+        Route::delete('/proyectos/{project}','destroy')->name('proyectos.destroy');
     
-    Route::get('/proyectos/crear','create')->name('proyectos.create');
-    Route::post('/proyectos','store')->name('proyectos.store');
-
+    });
+            
     Route::get('/proyectos/{project}','show')->name('proyectos.show');
-    Route::get('/proyectos/{project}/edit','edit')->name('proyectos.edit');
-    Route::put('/proyectos/{project}','update')->name('proyectos.update'); //se puede usar post tranquilamente
-    
-    Route::delete('/proyectos/{project}','destroy')->name('proyectos.destroy');
+               
 });
 
-Route::get('/dashboard')->name('dashboard.index');
+Route::controller(LoginController::class)->group(function(){
+
+    Route::get('/xrl8', 'showLoginForm')->name('login')->middleware('guest');
+    Route::post('/xrl8', 'login');
+
+});
+
+Route::get('/dashboard', function(){
+    return 'Estas en el dashboard.index';
+})->name('dashboard.index')->middleware('auth');
 
 Route::get('/{section?}', HomeController::class)->name('index');

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Stat;
+use App\Models\Link;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -31,27 +34,46 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'img'=>['nullable','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
+            'img'=>['required','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
             'title'=>['required','min:3'],
             'description'=>['required','min:3'],
-            'slug'=>['required','min:3','unique:projects'], //no esta completamente bien validado! tal vez con el setter o en el front?
+            'slug'=>['required','min:3','unique:projects','regex:/^[a-zA-Z\-]+$/'], //tengo que validar que no contenga espacios y solo letras+guiones medios
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
-            'visible'=>['nullable','boolean']
-            //tags sin validar!            
+            'tags'=>['required','string', 'regex:/^[a-zA-Z0-9,]+$/'],
+            'visible'=>['nullable','boolean'],            
         ]);
         
         $project = new Project();
         $project->title = $request->title;
         $project->slug = $request->slug;
-        $imageSaveResponse = $this->saveImage($request); 
-        $project->image = $imageSaveResponse == false ? null : $imageSaveResponse;
+        $imageURL = $this->saveImage($request); 
+        $project->image = $imageURL == false ? 'projects/extra/no_image.jpg' : $imageURL;
         $project->description = $request->description;
         $project->tags = $request->tags;
         $project->visible = $request->visible == null ? false:$request->visible;
         //$project->order = $request->order;
-        $actionSuccess = $project->save();
-        return redirect()->route('proyectos.index',['actionSuccess'=>$actionSuccess]);    
+        $project->save();
+        
+        $createdProject = Project::where('slug',$request->slug)->first();
+
+        if($createdProject == null)
+        {
+            $project->delete(); //por las dudas
+            return redirect()->route('proyectos.index',['success'=>false]);
+        }
+
+        $stats = new Stat();
+        $stats->project_id = $createdProject->id;
+        $stats->save();
+
+        $link = new Link();
+        $link->github = $request->github != null ? $request->github : null;
+        $link->web = $request->web != null ? $request->web : null;
+        $link->project_id = $createdProject->id;
+        $link->save();
+       
+        return redirect()->route('proyectos.index',['success'=>true]);    
     }
 
     public function saveImage(Request $request):bool|string
@@ -73,7 +95,7 @@ class ProjectController extends Controller
             } 
             catch (\Exception $ex)
             {
-                return response()->view('', [], 500); //todo: cambiar la vista retornada!
+                return false;
             }
             
         }
@@ -84,7 +106,17 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('projects.show',['project'=>$project]); //aca tengo que pasar la data del curso, no el id. cambiar.
+        Stat::where('project_id',$project->id)->increment('views');
+        
+        $stats = Stat::where('project_id',$project->id)->first();
+        $links = Link::where('project_id',$project->id)->first();
+        
+        if($stats == null || $project == null || $links == null)
+        {
+            return 'Ocurrio un error';
+        }
+
+        return view('projects.show',['project'=>$project,'stats'=>$stats,'links'=>$links, 'disabled'=>"disabled"]);
     }
 
     /**
@@ -100,24 +132,48 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $oldData = $project;
+        $imageURL = $oldData->image;
+        
         $request->validate([
             'img'=>['nullable','image','mimes:jpg,jpeg','extensions:jpg,jpeg'],
             'title'=>['required','min:3'],
             'description'=>['required','min:3'],
-            'slug'=>['required','min:3','unique:projects'], //no esta completamente bien validado! tal vez con el setter o en el front?
+            'slug'=>['required','min:3','unique:projects','regex:/^[a-zA-Z\-]+$/'], //no esta completamente bien validado! tal vez con el setter o en el front?
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
-            'visible'=>['nullable','boolean']
-            //tags sin validar!            
+            'tags'=>'regex:/^[a-zA-Z0-9,]+$/',
+            'visible'=>['nullable','boolean'],             
         ]);
 
         if($request->img != null)
         {
-            $imageSaveResponse = $this->saveImage($request); 
-            $project->image = $imageSaveResponse == false ? null : $imageSaveResponse;
+            unlink(public_path('img/').$oldData->image);
+            $imageURL = $this->saveImage($request);            
+        }
+        else //si no le paso img
+        {
+            //Renombro la imagen existente con el nuevo slug
+            $extension = pathinfo(public_path('img/').$oldData->image,PATHINFO_EXTENSION);
+            if(rename(public_path('img/').$oldData->image, public_path('img/projects/').$request->slug.'.'.$extension))
+            {
+                $imageURL = 'projects/'.$request->slug.'.'.$extension;
+            }//En caso de error coloco un placeHolder
+            else{
+                $imageURL = 'projects/extra/no_image.jpg';
+            }            
         }
 
-        return $project;
+        $success = $project->update([
+            'title'=>$request->title,
+            'slug'=>$request->slug,
+            'description'=>$request->description,
+            'image'=>$imageURL,
+            'tags'=>$request->tags,
+            'visible'=>$request->visible,
+        ]);
+
+        return redirect()->route('proyectos.index',['success'=>$success]);
     }
 
     /**

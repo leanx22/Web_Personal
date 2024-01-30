@@ -11,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) { //crea la tabla users
             $table->id();
-            $table->string('username',45);
-            $table->string('password',150);
+            $table->string('name',200);
+            $table->string('email')->unique(); //unique, no se puede repetir entre registros.
+            $table->timestamp('email_verified_at')->nullable(); //fechas
+            $table->string('password');
+            $table->rememberToken(); //crea una columna varchar de 100 chars, donde se va a guardar un token para la sesion.
+            $table->timestamps(); //created_at updated_at - cuando se modifica/crea el registro.
+            
             $table->unsignedBigInteger('profile_id');
             $table->foreign('profile_id')->references('id')->on('profiles');
         });
+
     }
 
     /**

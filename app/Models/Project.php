@@ -13,6 +13,8 @@ class Project extends Model
     protected $table = "projects";
     public $timestamps = false;
 
+    protected $fillable = ['title','slug','description','image','tags','visible','order'];
+
     public function getRouteKeyName()
     {
         return 'slug';
