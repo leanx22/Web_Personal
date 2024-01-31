@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    //verificar si ya se esta logueado mediante un MW que verifique la existencia de la variable de sesion
-    //verificar existencia del usuario
-    //verificar contrasena
-    //guardar variable de sesion y redireccionar.
 
     public function showLoginForm()
     {
@@ -25,10 +21,10 @@ class LoginController extends Controller
         {
             //Evitar session fixation.
             request()->session()->regenerate();
-            return route('dashboard.index');
+            return redirect()->route('dashboard.index');
         }
 
-        return 'con algo troleaste';
+        return redirect()->route('login');
     }
 
 }

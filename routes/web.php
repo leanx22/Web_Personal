@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -22,6 +23,8 @@ Route::controller(ProjectController::class)
 
     Route::middleware('auth')->group(function(){
 
+        Route::get('/dashboard',DashboardController::class)->name('dashboard.index');
+        
         Route::get('/proyectos','index')->name('proyectos.index');
 
         Route::get('/proyectos/crear','create')->name('proyectos.create');
@@ -39,13 +42,9 @@ Route::controller(ProjectController::class)
 
 Route::controller(LoginController::class)->group(function(){
 
-    Route::get('/xrl8', 'showLoginForm')->name('login')->middleware('guest');
-    Route::post('/xrl8', 'login');
+    Route::get('/xlr8', 'showLoginForm')->name('login')->middleware('guest');
+    Route::post('/xlr8', 'login');
 
 });
-
-Route::get('/dashboard', function(){
-    return 'Estas en el dashboard.index';
-})->name('dashboard.index')->middleware('auth');
 
 Route::get('/{section?}', HomeController::class)->name('index');

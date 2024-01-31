@@ -65,14 +65,27 @@
             <small class="little_error">{{$message}}</small>
         @enderror
 
-        <label class="font-light text-gray-500 mt-4">Visible en la página principal:</label>
-        <input type="checkbox" name="visible" value="1" class="text-[14px] p-2" placeholder="https://github.com/user/example-repo" value={{old('visible')}}>
+        <span class="mt-4 mb-2 flex items-center ms-2">
+            <label for="visibleCheckbox" class="font-light text-gray-500">Visible en la página principal:</label>
+            <input type="checkbox" name="visible" id="visibleCheckbox" class="text-[14px] p-2 w-[24px] h-[24px] ms-2" value="1">
+        </span>
 
         @error('visible')
             <small class="little_error">{{$message}}</small>
         @enderror
 
-        <button type="submit" class="bg-lime-500 rounded-md p-2 m-2 text-white font-semibold">Guardar</button>
+        <span class="ms-2">
+            <label for="orderInput" class="font-light text-gray-500">Orden:</label>
+            <input type="number" name="order" id="orderInput" value="{{old('order',1)}}" min="1" max="100"
+            class="max-w-[64px] bg-gray-100 border-2 border-gray-400 rounded-md p-1 ms-4">
+            <small class="text-[12px] text-gray-400"><br>*Significa el orden en el que se muestran los proyectos.</small>
+        </span>        
+
+        @error('order')
+            <small class="little_error">{{$message}}</small>
+        @enderror
+
+        <button type="submit" class="bg-lime-500 rounded-md p-2 m-2 mt-4 text-white font-semibold">Guardar</button>
     </form>
 </div>
 

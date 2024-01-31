@@ -12,7 +12,7 @@
   <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#educacion">Educacion</a>
   <button class="text-white font-bold text-lg bg-[#4ea5fc] py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>  
 </nav>
-
+<main>
 <!--Seccion 'hero'-->
 <div class="md:min-h-screen w-full">
   <div class="md:min-h-screen w-full bg-[#212121] grid grid-cols-12 grid-flow-col spacing">    
@@ -70,6 +70,7 @@
 
   </div>
 </section>
+</main>
 
 <!--Projs-->
 <section id="proyectos">
@@ -122,8 +123,8 @@
 <section id="conocimientos" class="lg:sticky lg:top-0 lg:-z-10">
   <div class="bg-gradient-to-b from-sky-200 to-indigo-400 pt-20 pb-44 grid grid-auto-flow grid-cols-12 items-center justify-center">
       <div class="col-span-12 lg:col-span-4 mb-14 lg:pt-14 2xl:pt-24 flex flex-col items-center justify-center lg:items-start lg:justify-start p-3 lg:ps-20">
-        <h2 class="text-[48px] text-white font-semibold text-center lg:text-start">Tecnologias</h2>
-        <p class="text-center lg:text-start text-white font-semibold text-[22px] lg:text-[23px] 2xl:text-[28px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dicta vel provident, asperiores architecto dolor facilis earum at sapiente quod. Quaerat nulla modi aperiam inventore harum error repellendus, architecto dignissimos.</p>
+        <h2 class="text-[48px] text-white font-semibold text-center lg:text-start">Conocimientos</h2>
+        <p class="text-center lg:text-start text-white font-semibold text-[22px] lg:text-[23px] 2xl:text-[28px]">Me mantengo al día, utilizando, aprendiendo y manteniendo proyectos que utilizan las siguientes tecnologías.</p>
       </div>
 
       <div class="p-4 col-span-12 lg:col-span-8">
@@ -150,7 +151,6 @@
 
 <section id="educacion" style="background-image: url('img/photos/libros.jpg')">
   <div class="w-screen h-screen flex flex-col items-center justify-center px-4 backdrop-blur-sm">
-
     <h2 class="text-white text-[42px] md:text-[48px] xl:text-[58px] font-bold">Educación</h2>
     <!--Universidad-->
     <div class="bg-white min-w-[350px] max-w-[350px] md:max-w-[740px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in">
@@ -165,7 +165,7 @@
         <small class="text-gray-500 ms-2 mb-1 font-semibold">Feb. 2023 - Actualidad</small>
       </div>
     </div>
-
+    
     <!--Secundario-->
     <div class="bg-white min-w-[350px] max-w-[350px] md:min-w-[740px] md:max-w-[850px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in">
       <div class="flex items-center justify-center md:min-w-[140px]">
@@ -177,9 +177,35 @@
         <small class="text-gray-500 ms-2 mb-2 font-semibold">Ene. 2014 - Dic. 2020</small>
       </div>
     </div>
-
   </div>
 </section>  
+
+<footer class="bg-white min-h-[64px] p-4">
+  <div class="min-w-full grid grid-cols-12">
+    
+    <span class="text-gray-500 col-span-full md:col-span-8 lg:col-span-4">
+      <h3 class="font-semibold">Contacto:</h3>
+      <ul class="ps-2">
+        <li>email: <a href="mailto: leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></li>                  
+      </ul>      
+    </span>
+
+    <span class="text-gray-500 col-span-full md:col-span-8 lg:col-span-4">
+      <h3 class="font-semibold">Recursos:</h3>
+      <ul class="ps-2">
+        <li><a href="https://icons8.com/icon/8808/linkedin" target="_blank">LinkedIn logo por <strong>icons8</strong></a></li>                  
+        <li><a href="https://icons8.com/icon/12599/github" target="_blank">Github logo por <strong>icons8</strong></a></li> 
+        <li><a href="https://unsplash.com/es/@trnavskauni?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Foto de Trnava University de <strong>Unsplash</strong></a></li> 
+      </ul>      
+    </span>
+
+    <span class="text-gray-500 col-span-full md:col-span-4 lg:col-span-4">
+      <h3 class="font-semibold">Gracias:</h3>
+      <p>Aún sigo trabajando cada día en mejorar la página :)</p>     
+    </span>
+
+  </div>
+</footer>
 
 @endsection
 

@@ -41,6 +41,7 @@ class ProjectController extends Controller
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
             'tags'=>['required','string', 'regex:/^[a-zA-Z0-9,]+$/'],
+            'order'=>['numeric','min:1','max:100'],
             'visible'=>['nullable','boolean'],            
         ]);
         
@@ -144,6 +145,7 @@ class ProjectController extends Controller
             'github'=>['nullable','url'],
             'web'=>['nullable','url'],
             'tags'=>'regex:/^[a-zA-Z0-9,]+$/',
+            'order'=>['numeric','min:1','max:100'],
             'visible'=>['nullable','boolean'],             
         ]);
 
@@ -172,6 +174,7 @@ class ProjectController extends Controller
             'description'=>$request->description,
             'image'=>$imageURL,            
             'tags'=>$request->tags,
+            'order'=>$request->order,
             'visible'=>$request->visible == null ? false:$request->visible,
         ]);
 

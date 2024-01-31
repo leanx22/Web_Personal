@@ -77,6 +77,17 @@
             <small class="little_error">{{$message}}</small>
         @enderror
 
+        <span class="ms-2">
+            <label for="orderInput" class="font-light text-gray-500">Orden:</label>
+            <input type="number" name="order" id="orderInput" value="{{old('order',$project->order)}}" min="1" max="100"
+            class="max-w-[64px] bg-gray-100 border-2 border-gray-400 rounded-md p-1 ms-4">
+            <small class="text-[12px] text-gray-400"><br>*Significa el orden en el que se muestran los proyectos.</small>
+        </span>        
+
+        @error('order')
+            <small class="little_error">{{$message}}</small>
+        @enderror
+
         <button type="submit" class="bg-lime-500 rounded-md p-2 m-2 text-white font-semibold">Guardar</button>
     </form>
     <form action="{{route('proyectos.destroy',$project->id)}}" method="POST" class="bg-white md:max-w-[700px] mx-4 md:mx-auto rounded-md p-4 flex flex-col shadow-lg">
