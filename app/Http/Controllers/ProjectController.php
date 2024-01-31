@@ -115,7 +115,7 @@ class ProjectController extends Controller
         if($stats == null || $project == null || $links == null)
         {
             return 'Ocurrio un error';
-        }
+        }        
 
         return view('projects.show',['project'=>$project,'stats'=>$stats,'links'=>$links, 'disabled'=>"disabled"]);
     }

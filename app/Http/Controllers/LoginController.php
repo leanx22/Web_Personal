@@ -21,7 +21,7 @@ class LoginController extends Controller
         {
             //Evitar session fixation.
             request()->session()->regenerate();
-            return redirect()->route('dashboard.index');
+            return redirect()->route('index');
         }
 
         return redirect()->route('login');

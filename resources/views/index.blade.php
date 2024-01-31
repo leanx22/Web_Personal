@@ -10,6 +10,9 @@
   <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#aboutme">Sobre mi</a>
   <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#conocimientos">Conocimientos</a>
   <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#educacion">Educacion</a>
+  @auth
+  <a href="{{route('dashboard.index')}}" class="text-white font-bold text-lg bg-[#fcdc4e] py-2 px-5 rounded-full min-w-28 min-h-10 z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">Ir al panel</a>
+  @endauth
   <button class="text-white font-bold text-lg bg-[#4ea5fc] py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>  
 </nav>
 <main>
@@ -84,9 +87,9 @@
           <img class="rounded-t-lg min-w-full min-h-full" src="{{asset('img/'.$project->image)}}" alt="Imagen del proyecto">
           <!--Tags-->
           <div class="absolute inset-0 flex items-end justify-end p-4">
-            <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">PHP</label>
-            <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">Laravel</label>
-            <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">TailwindCSS</label>
+            @foreach ($project->tagCollection as $tag)
+              <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">{{$tag}}</label>
+            @endforeach
           </div>              
         </div>
         <!--Inferior-->
