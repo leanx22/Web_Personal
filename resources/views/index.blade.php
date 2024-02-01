@@ -3,6 +3,10 @@
 @section('description','Pagina web personal')
 @section('keywords',"conjunto, de, etiquetas")
 
+@section('head')
+<script type="module" src="{{asset('js/home/home.js')}}"></script>
+@endsection
+
 @section('body')
 
 <nav class="absolute flex items-center top-0 w-full p-4 pt-2 z-2">
@@ -13,8 +17,30 @@
   @auth
   <a href="{{route('dashboard.index')}}" class="text-white font-bold text-lg bg-[#fcdc4e] py-2 px-5 rounded-full min-w-28 min-h-10 z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">Ir al panel</a>
   @endauth
-  <button class="text-white font-bold text-lg bg-[#4ea5fc] py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>  
+  <button id="contactBtn" class="text-white font-bold text-lg bg-[#4ea5fc] py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>  
 </nav>
+
+<!--POPUP-->
+<div id="contactPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30 backdrop-blur-sm hidden">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-[650px]">
+      <h2 class="text-xl font-bold mb-4">Trabajemos juntos.</h2>
+      <p>¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que pueda ponerme en contacto con usted a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="p-1 bg-gray-200 rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
+      <form class="mt-2 p-2 bg-gray-100 border-4 border-gray-600 rounded-lg" method="POST">
+        <h2 class="font-semibold text-gray-400">Formulario de contacto</h2>
+        <input type="email" name="email" id="email" class="bg-gray-200 rounded-md p-1 font-semibold text-gray-600 me-4 mb-1" placeholder="email" required>
+        <input type="text" name="name" id="name" class="bg-gray-200 rounded-md p-1 font-semibold text-gray-600" placeholder="nombre" required>          
+        <textarea name="messaje" class="bg-gray-200 mt-2 w-full p-1 rounded-md mb-4 resize-none" placeholder="Escriba un mensaje..." rows="6" required></textarea>
+        
+        <input type="text" name="link" id="link" class="bg-gray-200 rounded-md p-1 text-gray-600 w-full" placeholder="(opcional) enlace de la oferta"> 
+        <label class="text-[12px]">En caso de que la oferta se encuentre publicada en internet, puede incluir el enlace.</label>
+        <div class="mt-2 w-full">
+          <button type="submit" class="bg-lime-500 text-white font-semibold p-2 rounded-lg w-full">Solicitar información
+        </div>
+      </form>
+      <button id="closePopupBtn" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cerrar</button>
+  </div>
+</div>
+
 <main>
 <!--Seccion 'hero'-->
 <div class="md:min-h-screen w-full">
@@ -31,10 +57,10 @@
           <!--  <button class="btn_icon">
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/resume.png" alt="resume"/>
           </button> -->
-          <button class="btn_icon mx-8">
+          <button id="linkedinBtn" class="btn_icon mx-8">
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" alt="linkedin"/>
           </button>
-          <button class="btn_icon mx-8">
+          <button id="githubBtn" class="btn_icon mx-8">
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" alt="github"/>
           </button>
         </div>
@@ -77,11 +103,11 @@
 
 <!--Projs-->
 <section id="proyectos">
-  
-  <div class="bg-sky-200 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">
+  <!--sky-200-->
+  <div class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">
 
     @foreach ($projects as $project)
-      <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
+      <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
         <!--Superior-->
         <div class="relative">
           <img class="rounded-t-lg min-w-full min-h-full" src="{{asset('img/'.$project->image)}}" alt="Imagen del proyecto">
@@ -112,7 +138,7 @@
 
     @if ($odd == false)
       <!--Si es impar:-->
-      <div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">
+      <div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">
         <label class="text-[28px] text-center text-gray-400">Más proyectos próximamente...</label>
       </div>
       <!--end-->

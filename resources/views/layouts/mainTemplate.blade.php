@@ -6,7 +6,8 @@
     <meta name="author" content="Leandro Guia">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @yield('head')
     <title>@yield('title')</title>
 </head>
 <body class="bg-gray-200">
