@@ -10,13 +10,22 @@ class GeneralStatsController extends Controller
     public static function newGeneralView():int
     {
         $stats = GeneralStat::first();
+        if($stats == null)
+        {
+            $stats = new GeneralStat();
+            $stats->save();
+        }
         return $stats->increment('visitas');
     }
 
-    public static function newInteraction(string $column):int
+    public static function newInteraction(Request $request)
     {
         $stats = GeneralStat::first();
-        return $stats->increment($column);
+        $status = $stats->increment($request->interaction);
+
+        $response = response()->json(["success"=>$status]);
+        $response->setStatusCode($status == 1? 200 : 500);
+        return $response;
     }
 
     public function restartStat(string $column):bool

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GeneralStatsController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -46,5 +48,13 @@ Route::controller(LoginController::class)->group(function(){
     Route::post('/xlr8', 'login');
 
 });
+
+Route::controller(GeneralStatsController::class)->group(function(){
+
+    Route::post('/clickHandler','newInteraction')->name('interaction.handler');
+
+});
+
+Route::post('/send-contact-form',[ContactFormController::class,'store'])->name('contact.send');
 
 Route::get('/{section?}', HomeController::class)->name('index');

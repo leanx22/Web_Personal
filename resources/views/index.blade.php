@@ -4,7 +4,9 @@
 @section('keywords',"conjunto, de, etiquetas")
 
 @section('head')
+<script type="module" src="{{asset('js/consts.js')}}"></script>
 <script type="module" src="{{asset('js/home/home.js')}}"></script>
+<script type="module" src="{{asset('js/home/contactForm.js')}}"></script>
 @endsection
 
 @section('body')
@@ -21,23 +23,30 @@
 </nav>
 
 <!--POPUP-->
-<div id="contactPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30 backdrop-blur-sm hidden">
-  <div class="bg-white p-8 rounded-lg shadow-lg max-w-[650px]">
-      <h2 class="text-xl font-bold mb-4">Trabajemos juntos.</h2>
-      <p>¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que pueda ponerme en contacto con usted a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="p-1 bg-gray-200 rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
-      <form class="mt-2 p-2 bg-gray-100 border-4 border-gray-600 rounded-lg" method="POST">
-        <h2 class="font-semibold text-gray-400">Formulario de contacto</h2>
-        <input type="email" name="email" id="email" class="bg-gray-200 rounded-md p-1 font-semibold text-gray-600 me-4 mb-1" placeholder="email" required>
-        <input type="text" name="name" id="name" class="bg-gray-200 rounded-md p-1 font-semibold text-gray-600" placeholder="nombre" required>          
-        <textarea name="messaje" class="bg-gray-200 mt-2 w-full p-1 rounded-md mb-4 resize-none" placeholder="Escriba un mensaje..." rows="6" required></textarea>
-        
-        <input type="text" name="link" id="link" class="bg-gray-200 rounded-md p-1 text-gray-600 w-full" placeholder="(opcional) enlace de la oferta"> 
-        <label class="text-[12px]">En caso de que la oferta se encuentre publicada en internet, puede incluir el enlace.</label>
-        <div class="mt-2 w-full">
-          <button type="submit" class="bg-lime-500 text-white font-semibold p-2 rounded-lg w-full">Solicitar información
+<div id="contactPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
+  <div class="bg-neutral-700 px-8 py-4 rounded-sm shadow-lg max-w-[650px]">
+      <h2 class="text-xl font-bold mb-4 text-white">Trabajemos juntos.</h2>
+      <p class="text-white mb-4">¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que pueda ponerme en contacto con usted a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="px-2 py-1 bg-blue-500 font-semibold rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
+      <hr class="min-h-[3px] rounded-full bg-white bg-opacity-50 border-none">
+      <form class="mt-4" action="{{route('contact.send')}}" method="POST">
+        @csrf
+        <div class="grid grid-cols-12">
+        <input type="email" name="email" id="email" class="col-span-6 me-1 bg-neutral-800 rounded-md p-1 font-semibold text-gray-300 ps-2 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="email" value="{{old('email')}}" required>
+        <input type="text" name="name" id="name" class="col-span-6 ms-1 bg-neutral-800 rounded-md p-1 font-semibold text-gray-300 ps-2 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="nombre" value="{{old('name')}}" required>          
         </div>
+        <textarea name="message" class="bg-neutral-800 mt-2 w-full p-1 rounded-md mb-2 resize-none text-gray-300 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="Escriba un mensaje..." rows="6" required>{{old('message')}}</textarea>
+        
+        <input type="text" name="link" id="link" class="bg-neutral-800 rounded-md p-1 text-gray-300  w-full outline-none focus:ring-4 focus:ring-indigo-200" placeholder="Enlace de la oferta (opcional)"> 
+        <label class="text-[12px] text-gray-100">En caso de que la oferta se encuentre publicada en internet, puede incluir el enlace.</label>
+        <div class="mt-2 w-full">
+          <button id="contactSendBtn" type="submit" class="bg-blue-500 text-white font-semibold p-2 rounded-lg w-full hover:bg-blue-400 auto_fade">Solicitar información
+          </div>
       </form>
-      <button id="closePopupBtn" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Cerrar</button>
+      <button id="closePopupBtn" class="font-semibold mt-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 auto_fade min-w-full">Cerrar</button>
+      <div class="p-2 pb-0 flex justify-end hidden" id="loadingContactSendDiv">
+        <img src="{{asset('img/gifs/loaders/785.gif')}}" alt="Icono de carga" class="max-h-[24px]">
+        <p class="font-bold text-lime-400 ms-1">Enviando!</p>
+      </div>
   </div>
 </div>
 

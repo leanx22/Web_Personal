@@ -1,0 +1,1 @@
+const WEB_LINK = 'http://localhost/PersonaPage/public/';

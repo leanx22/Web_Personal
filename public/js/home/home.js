@@ -1,7 +1,7 @@
+
 function toggleContact(e)
 {
     var popup = document.getElementById('contactPopup');
-    console.log(popup);
     var classes = Array.from(popup.classList);
     if(classes.includes("hidden"))
     {
@@ -20,6 +20,12 @@ function newPageRedirect(url)
     window.open(url,'_blank');
 }
 
+function newInteractionRegister(interactionType)
+{
+
+
+}
+
 $(function(){
     
     
@@ -27,4 +33,5 @@ $(function(){
     $("#closePopupBtn").on("click", toggleContact);
     $("#linkedinBtn").on("click", function(){newPageRedirect("https://www.linkedin.com/in/leandro-guia-dev/")});
     $("#githubBtn").on("click", function(){newPageRedirect("https://github.com/leanx22")});
+    $("#githubBtn").on("click", function(){newInteractionRegister("visitas_github")});
 });
