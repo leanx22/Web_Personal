@@ -55,6 +55,4 @@ Route::controller(GeneralStatsController::class)->group(function(){
 
 });
 
-Route::post('/send-contact-form',[ContactFormController::class,'store'])->name('contact.send');
-
 Route::get('/{section?}', HomeController::class)->name('index');

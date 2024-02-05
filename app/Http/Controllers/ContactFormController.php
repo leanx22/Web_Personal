@@ -10,9 +10,9 @@ class ContactFormController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email'=>['required','email'],
-            'name'=>['required','alpha:ascii'],
-            'message'=>['required'],
+            'email'=>['required','string','email'],
+            'name'=>['required','string','alpha:ascii'],
+            'message'=>['required','string'],
             'link'=>['nullable','sometimes','url']    
         ]);
         
@@ -23,7 +23,13 @@ class ContactFormController extends Controller
         $contact_info->job_link = $request->link;
 
         $success = $contact_info->save();    
-       
-        return redirect()->route('index',['formSendSuccess'=>$success]);   
+        $data = [
+            "success"=>$success,
+            "message"=>"Datos almacenados",
+            "data"=>$contact_info,
+        ];
+
+        return response()->json($data)->setStatusCode($success == 1 ? 200:500);
+        //return redirect()->route('index',['formSendSuccess'=>$success]);   
     }
 }

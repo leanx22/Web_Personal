@@ -22,34 +22,6 @@
   <button id="contactBtn" class="text-white font-bold text-lg bg-[#4ea5fc] py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>  
 </nav>
 
-<!--POPUP-->
-<div id="contactPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
-  <div class="bg-neutral-700 px-8 py-4 rounded-sm shadow-lg max-w-[650px]">
-      <h2 class="text-xl font-bold mb-4 text-white">Trabajemos juntos.</h2>
-      <p class="text-white mb-4">¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que pueda ponerme en contacto con usted a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="px-2 py-1 bg-blue-500 font-semibold rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
-      <hr class="min-h-[3px] rounded-full bg-white bg-opacity-50 border-none">
-      <form class="mt-4" action="{{route('contact.send')}}" method="POST">
-        @csrf
-        <div class="grid grid-cols-12">
-        <input type="email" name="email" id="email" class="col-span-6 me-1 bg-neutral-800 rounded-md p-1 font-semibold text-gray-300 ps-2 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="email" value="{{old('email')}}" required>
-        <input type="text" name="name" id="name" class="col-span-6 ms-1 bg-neutral-800 rounded-md p-1 font-semibold text-gray-300 ps-2 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="nombre" value="{{old('name')}}" required>          
-        </div>
-        <textarea name="message" class="bg-neutral-800 mt-2 w-full p-1 rounded-md mb-2 resize-none text-gray-300 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="Escriba un mensaje..." rows="6" required>{{old('message')}}</textarea>
-        
-        <input type="text" name="link" id="link" class="bg-neutral-800 rounded-md p-1 text-gray-300  w-full outline-none focus:ring-4 focus:ring-indigo-200" placeholder="Enlace de la oferta (opcional)"> 
-        <label class="text-[12px] text-gray-100">En caso de que la oferta se encuentre publicada en internet, puede incluir el enlace.</label>
-        <div class="mt-2 w-full">
-          <button id="contactSendBtn" type="submit" class="bg-blue-500 text-white font-semibold p-2 rounded-lg w-full hover:bg-blue-400 auto_fade">Solicitar información
-          </div>
-      </form>
-      <button id="closePopupBtn" class="font-semibold mt-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 auto_fade min-w-full">Cerrar</button>
-      <div class="p-2 pb-0 flex justify-end hidden" id="loadingContactSendDiv">
-        <img src="{{asset('img/gifs/loaders/785.gif')}}" alt="Icono de carga" class="max-h-[24px]">
-        <p class="font-bold text-lime-400 ms-1">Enviando!</p>
-      </div>
-  </div>
-</div>
-
 <main>
 <!--Seccion 'hero'-->
 <div class="md:min-h-screen w-full">
@@ -63,9 +35,6 @@
         <p class="text-white text-[32px] md:text-[98px] xl:text-[114px] font-bold leading-tight text-center md:text-end"><span class="text-[#4ea5fc] hover:text-red-500 auto_fade">web</span> /dev</p>
       
         <div class="mt-10 mb-3 md:mb-0 flex justify-center">
-          <!--  <button class="btn_icon">
-            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/resume.png" alt="resume"/>
-          </button> -->
           <button id="linkedinBtn" class="btn_icon mx-8">
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" alt="linkedin"/>
           </button>
@@ -80,7 +49,12 @@
     
     <!--Foto-->
     <div class="hidden lg:block lg:display-block lg:min-h-full lg:col-span-6 xl:col-span-5 z-1">
-      <img src="{{asset('img/personal/fotoPersonal.png')}}" class="w-full h-full grayscale brightness-50 z-1"/>
+      <img src="{{asset('img/personal/fotoPersonal.jpg')}}" class="w-full h-full grayscale brightness-50 z-1"/>
+    </div>
+
+    <!--Scroll-->
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
+      <img src="{{asset('img/icons/UI/sd.png')}}" class="max-h-[32px] max-w-[32px] ms-8 mt-4">
     </div>
 
   </div>
@@ -244,6 +218,62 @@
 
   </div>
 </footer>
+
+
+
+<!--POPUP-->
+<div id="contactPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
+  <div class="bg-neutral-700 px-8 py-4 rounded-sm shadow-lg max-w-[650px]">
+      
+    <h2 class="text-xl font-bold mb-4 text-white">Trabajemos juntos.</h2>
+    <p class="text-white mb-4">¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que pueda ponerme en contacto con usted a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="px-2 py-1 bg-blue-500 font-semibold rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
+    <hr class="min-h-[3px] rounded-full bg-white bg-opacity-50 border-none">
+      
+    <form class="mt-4" id="contactForm">
+      @csrf
+      <div class="grid grid-cols-12">
+        <div class="col-span-6 flex flex-col">
+          <input type="email" name="email" id="email" class="me-1 bg-neutral-800 rounded-md p-1 font-semibold text-gray-300 ps-2 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="email" value="{{old('email')}}" required>
+          @error('email')
+          <small class="little_error">{{$message}}</small>
+          @enderror            
+        </div>
+        <div class="col-span-6 flex flex-col">
+          <input type="text" name="name" id="name" class="ms-1 bg-neutral-800 rounded-md p-1 font-semibold text-gray-300 ps-2 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="nombre" value="{{old('name')}}" required>          
+          @error('name')
+          <small class="little_error">{{$message}}</small>
+          @enderror  
+        </div>
+      </div>
+      <textarea name="message" class="bg-neutral-800 mt-2 w-full p-1 rounded-md mb-2 resize-none text-gray-300 outline-none focus:ring-4 focus:ring-indigo-200" placeholder="Escriba un mensaje..." rows="6" required>{{old('message')}}</textarea>
+      @error('message')
+          <small class="little_error">{{$message}}</small>
+      @enderror  
+
+      <input type="text" name="link" id="link" class="bg-neutral-800 rounded-md p-1 text-gray-300  w-full outline-none focus:ring-4 focus:ring-indigo-200" placeholder="Enlace de la oferta (opcional)"> 
+      @error('link')
+          <small class="little_error">{{$message}}</small>
+      @enderror  
+      <label class="text-[12px] text-gray-100">En caso de que la oferta se encuentre publicada en internet, puede incluir el enlace.</label>
+      <div class="mt-2 w-full">
+        <button id="contactSendBtn" class="bg-blue-500 text-white font-semibold p-2 rounded-lg w-full hover:bg-blue-400 auto_fade disabled:bg-blue-300">Solicitar información
+      </div>
+    </form>
+      
+    <button id="closePopupBtn" class="font-semibold mt-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 auto_fade min-w-full disabled:bg-red-300">Cerrar</button>
+    
+    <div class="p-2 pb-0 flex justify-end items-center hidden" id="loaderDiv">
+      <img id="loaderAnimation" src="{{asset('img/gifs/loaders/loadCircle.gif')}}" alt="Icono de carga" class="max-h-[24px]">
+      <p id="loaderText" class="font-bold text-white ms-1">Enviando...</p>
+    </div>
+
+    <div class="p-2 w-full flex justify-end hidden" id="contactForm_notification">
+      <p class="font-semibold" id="contactForm_notification_text">Este es un mensaje predeterminado</p>
+    </div>
+
+  </div>
+</div>
+
 
 @endsection
 
