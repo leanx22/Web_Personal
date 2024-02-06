@@ -52,7 +52,7 @@ class ProjectController extends Controller
         $project->description = $request->description;
         $project->tags = $request->tags;
         $project->visible = $request->visible == null ? false:$request->visible;
-        //$project->order = $request->order;
+        $project->order = $request->order;
         $project->save();
         
         $createdProject = Project::where('slug',$request->slug)->first();
@@ -124,7 +124,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $links = Link::where('project_id',$project->id)->first();        
+        $links = Link::where('project_id',$project->id)->firstOrFail();        
         return view('projects.edit',['title'=>'Editar', 'action'=>'Editar proyecto','project'=>$project,'links'=>$links]);
     }
 

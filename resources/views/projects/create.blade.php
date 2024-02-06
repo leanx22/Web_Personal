@@ -17,14 +17,14 @@
         <h2 class="font-semibold text-gray-400 text-[24px]">{{$action}}</h2>
         
         <label class="font-light text-gray-500 mt-4">Título</label>
-        <input type="text" name="title" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Windows 2!" required value={{old('title')}}>
+        <input type="text" name="title" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Windows 2!" required value="{{old('title')}}">
 
         @error('name')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Slug</label>
-        <input type="text" name="slug" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Ej: un-link-increíble" required value={{old('slug')}}>
+        <input type="text" name="slug" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Ej: un-link-increíble" required value="{{old('slug')}}">
 
         @error('slug')
             <small class="little_error">{{$message}}</small>
@@ -45,21 +45,21 @@
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Github (opcional)</label>
-        <input type="text" name="github" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://github.com/user/example-repo" value={{old('github')}}>
+        <input type="text" name="github" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://github.com/user/example-repo" value="{{old('github')}}">
 
         @error('github')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">WebLink (opcional)</label>
-        <input type="text" name="web" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://windows2.net/home" value={{old('web')}}>
+        <input type="text" name="web" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="https://windows2.net/home" value="{{old('web')}}">
 
         @error('web')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Etiquetas (separadas por coma)</label>
-        <input type="text" name="tags" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Programacion, PHP, MySQL, Laravel..." value={{old('tags')}}>
+        <input type="text" name="tags" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Programacion, PHP, MySQL, Laravel..." value="{{old('tags')}}">
 
         @error('tags')
             <small class="little_error">{{$message}}</small>

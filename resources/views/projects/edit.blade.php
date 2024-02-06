@@ -17,14 +17,14 @@
         <h2 class="font-semibold text-gray-400 text-[24px]">{{$action}}</h2>
         
         <label class="font-light text-gray-500 mt-4">Título</label>
-        <input type="text" name="title" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Nuevo titulo" required value={{old('title',$project->title)}}>
+        <input type="text" name="title" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Nuevo titulo" required value="{{old('title',$project->title)}}">
 
         @error('name')
             <small class="little_error">{{$message}}</small>
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Slug</label>
-        <input type="text" name="slug" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Ej: un-slug-nuevo" required value={{old('slug',$project->slug)}}>
+        <input type="text" name="slug" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Ej: un-slug-nuevo" required value="{{old('slug',$project->slug)}}">
 
         @error('slug')
             <small class="little_error">{{$message}}</small>
@@ -62,7 +62,7 @@
         @enderror
 
         <label class="font-light text-gray-500 mt-4">Etiquetas (separadas por coma)</label>
-        <input type="text" name="tags" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Programacion, PHP, MySQL, Laravel..." value={{old('tags',$project->tags)}}>
+        <input type="text" name="tags" class="bg-gray-100 rounded-lg text-[14px] p-2" placeholder="Programacion, PHP, MySQL, Laravel..." value="{{old('tags',$project->tags)}}">
 
         @error('tags')
             <small class="little_error">{{$message}}</small>
