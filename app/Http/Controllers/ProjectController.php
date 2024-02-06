@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Stat;
 use App\Models\Link;
-use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
