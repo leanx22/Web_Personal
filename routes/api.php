@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API_ProjectController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\GeneralStatsController;
 use Illuminate\Http\Request;
@@ -21,6 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
+route::controller(API_ProjectController::class)
+->group(function(){
+
+    Route::get('/projects/{search}/alldata','getAllProjectData');
+    Route::get('/projects/links/{search}','getLinksOfProject');
+    Route::post('/projects/saveInteraction','changeProjectStat'); //autentificar
+});
+
+//Se necesita autentificacion!
 Route::post('/saveContactInfo',[ContactFormController::class,'store']);
 Route::post('/saveInteraction',[GeneralStatsController::class,'newInteraction']);
-Route::post('/restartStat',[GeneralStatsController::class,'restartStat']);//->middleware('verificar.sesion');
+Route::post('/restartStat',[GeneralStatsController::class,'restartStat']);
