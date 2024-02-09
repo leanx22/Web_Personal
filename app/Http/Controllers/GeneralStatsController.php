@@ -7,15 +7,23 @@ use Illuminate\Http\Request;
 
 class GeneralStatsController extends Controller
 {
-    public static function newGeneralView():int
+    public static function newGeneralView()
     {
-        $stats = GeneralStat::first();
-        if($stats == null)
-        {
-            $stats = new GeneralStat();
-            $stats->save();
-        }
-        return $stats->increment('visitas');
+        $data = [
+            "success" => false,
+            "message" => null,
+            "status" => 500,
+        ];
+        
+        $stats = GeneralStat::firstOrCreate();
+
+        $affectedRows = $stats->increment('visitas');
+
+        $data["success"] = $affectedRows == 1 ? true : false;
+        $data["message"] = $data["success"] == true ? "Vista registrada" : "Ocurrio un error al intentar registrar la vista";
+        $data["status"] = $data["success"] == true ? 200 : 500;
+
+        return response()->json($data)->setStatusCode($data["status"]);
     }
 
     public static function newInteraction(Request $request)

@@ -25,12 +25,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 route::controller(API_ProjectController::class)
 ->group(function(){
 
-    Route::get('/projects/{search}/alldata','getAllProjectData');
+    Route::get('/projects','getAllPublicProjects');
+    Route::get('/projects/{search}','getProjectData');
+
     Route::get('/projects/links/{search}','getLinksOfProject');
-    Route::post('/projects/saveInteraction','changeProjectStat'); //autentificar
+    Route::get('/projects/stats/{search}','getStatsOfProject');
+
+    Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');
 });
 
-//Se necesita autentificacion!
-Route::post('/saveContactInfo',[ContactFormController::class,'store']);
-Route::post('/saveInteraction',[GeneralStatsController::class,'newInteraction']);
+//Se necesita autentificacion! -> probablemente con jwt/firebase estaría.
 Route::post('/restartStat',[GeneralStatsController::class,'restartStat']);
+
+//public
+Route::post('/saveGeneralView',[GeneralStatsController::class,'newGeneralView'])->middleware('throttle:viewstat_rl');
+Route::post('/saveInteraction',[GeneralStatsController::class,'newInteraction'])->middleware('throttle:interaction_rl');
+
+//No necesariamente autentificacion, deberia tener un rate limit, también validar la autenticidad de la fuente, evitar spam de alguna manera.
+Route::post('/saveContactInfo',[ContactFormController::class,'store']);

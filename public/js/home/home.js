@@ -30,7 +30,24 @@ function saveNewInteraction(interactionType)
     }));
 }
 
-$(function(){            
+function saveNewPageView()
+{
+    $.ajax({
+        type:'POST',
+        url:API_LINK+'/saveGeneralView',
+        dataType:"json",
+        async:true,
+    }).fail((function(xhr, status, error){
+        if(xhr.responseText)
+        {
+            let response = JSON.parse(xhr.responseText);
+            console.warn('Vista general: '+response.message);
+        }
+    }));
+}
+
+$(function(){                        
+
     $("#linkedinBtn").on("click", function(){newRedirect("https://www.linkedin.com/in/leandro-guia-dev/")});
     $("#githubBtn").on("click", function(){newRedirect("https://github.com/leanx22")});
     
@@ -38,4 +55,6 @@ $(function(){
     $("#githubBtn").on("click", function(){saveNewInteraction("visitas_github")});
 
     $("#contactBtn").on("click", function(){saveNewInteraction("interacciones_contacto")});
+
+    saveNewPageView();
 });

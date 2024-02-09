@@ -28,6 +28,26 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
 
+        RateLimiter::for('viewstat_rl', function (Request $request){
+            return Limit::perMinutes(10,1)->response(function (Request $request){
+                return response()->json(["message"=>"View already register some minutes ago."])->setStatusCode(429);
+            })->by($request->ip());
+        });
+
+        RateLimiter::for('interaction_rl', function (Request $request){
+            $key = $request->ip().$request->interaction;
+            return Limit::perMinutes(10,1)->response(function (Request $request){
+                return response()->json(["message"=>"That interaction was already registered some minutes ago."])->setStatusCode(429);
+            })->by($key);
+        });
+
+        RateLimiter::for('project_interaction_rl', function (Request $request){
+            $key = $request->ip().$request->projectId.$request->type;
+            return Limit::perMinutes(10,1)->response(function (Request $request){
+                return response()->json(["message"=>"That project's interaction was already registered some minutes ago."])->setStatusCode(429);
+            })->by($key);
+        });
+
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')

@@ -10,7 +10,35 @@ use Illuminate\Http\Request;
 
 class API_ProjectController extends Controller
 {
-    function getAllProjectData(Request $request,$search)
+    function getAllPublicProjects(Request $request)
+    {
+        $data = [
+            "response" => 200,
+            "message" => 'Listado de todos los proyectos.',
+            "results" => [],
+        ];
+        
+        $projects = Project::all();
+
+        foreach($projects as $project)
+        {
+            if($project->visible)
+            {
+                $project->makeHidden(['visible']);
+                $project->tags = explode(',',$project->tags);
+                
+                $links = Link::where('project_id',$project->id)->first();
+                $stats = Stat::where('project_id',$project->id)->first();
+                $project->links = ['github'=>$links->github,'web'=>$links->web];
+                $project->stats = ['views'=>$stats->views,'interactions'=>$stats->interactions];
+                array_push($data["results"],$project);
+            }  
+        }
+
+        return response()->json($data)->setStatusCode(200);
+    }
+
+    function getProjectData(Request $request,$search)
     {
         $project = Project::where('id',$search)->orWhere('slug',$search)->first();        
 
@@ -22,13 +50,13 @@ class API_ProjectController extends Controller
                 "resultado"=>null
             ];
     
-            return response()->json($data)->setStatusCode($project ? 401:404);
+            return response()->json($data)->setStatusCode($project ? 403:404); //Por seguridad, siempre debería retornar 404.
         }
 
         $links = Link::where('project_id',$project->id)->first();
         $stats = Stat::where('project_id',$project->id)->first();
 
-        $project->makeHidden(['image','order','visible']);
+        $project->makeHidden(['visible']);
 
         $data = [
             "criterio"=>$search,
@@ -63,7 +91,7 @@ class API_ProjectController extends Controller
 
         if(!$project || $project->visible == false)
         {
-            $data["status"]=$project ? 401:404;
+            $data["status"]=$project ? 403:404;
             $data["message"]=$project ? "Proyecto privado":"No encontrado";
     
             return response()->json($data)->setStatusCode($data["status"]);
@@ -74,6 +102,36 @@ class API_ProjectController extends Controller
         $data["status"]=200;
         $data["message"] = "Operacion exitosa";
         $data["results"] = ["github"=>$links->github,"web"=>$links->web,];
+
+        return response()->json($data)->setStatusCode($data["status"]);
+
+    }
+
+    function getStatsOfProject(Request $request, $search)
+    {
+        $project = Project::where('id',$search)->orWhere('slug',$search)->first();        
+
+        $data = [
+            "status"=>500,
+            "criterio"=>$search,
+            "message"=>null,
+            "success"=>false,
+            "results"=>null
+        ];
+
+        if(!$project || $project->visible == false)
+        {
+            $data["status"]=$project ? 403:404;
+            $data["message"]=$project ? "Proyecto privado":"No encontrado";
+    
+            return response()->json($data)->setStatusCode($data["status"]);
+        }
+
+        $stats = Stat::where('project_id',$project->id)->first();
+
+        $data["status"]=200;
+        $data["message"] = "Operacion exitosa";
+        $data["results"] = ["Visitas"=>$stats->views,"web"=>$stats->interactions,];
 
         return response()->json($data)->setStatusCode($data["status"]);
 
@@ -96,7 +154,7 @@ class API_ProjectController extends Controller
         if($stat)
         {
             try {
-                $rowsAffected = $stat->increment($request->statType);
+                $rowsAffected = $stat->increment($request->type);
             } catch (\Throwable $th) {
                 
                 $data["message"]= "No se pudo modificar la estadística en la base de datos";
