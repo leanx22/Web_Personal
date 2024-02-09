@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Stat;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;//borrar
 
 class API_ProjectController extends Controller
 {

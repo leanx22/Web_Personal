@@ -32,6 +32,7 @@ route::controller(API_ProjectController::class)
     Route::get('/projects/stats/{search}','getStatsOfProject');
 
     Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');
+
 });
 
 //Se necesita autentificacion! -> probablemente con jwt/firebase estaría.
@@ -41,5 +42,5 @@ Route::post('/restartStat',[GeneralStatsController::class,'restartStat']);
 Route::post('/saveGeneralView',[GeneralStatsController::class,'newGeneralView'])->middleware('throttle:viewstat_rl');
 Route::post('/saveInteraction',[GeneralStatsController::class,'newInteraction'])->middleware('throttle:interaction_rl');
 
-//No necesariamente autentificacion, deberia tener un rate limit, también validar la autenticidad de la fuente, evitar spam de alguna manera.
+//RL?
 Route::post('/saveContactInfo',[ContactFormController::class,'store']);

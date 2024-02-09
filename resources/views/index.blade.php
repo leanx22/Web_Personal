@@ -86,48 +86,56 @@
 
 <!--Projs-->
 <section id="proyectos">
-  <!--sky-200-->
-  <div class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">
 
-    @foreach ($projects as $project)
-      <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
-        <!--Superior-->
-        <div class="relative">
-          <img class="rounded-t-lg min-w-full min-h-full" src="{{asset('img/'.$project->image)}}" alt="Imagen del proyecto">
-          <!--Tags-->
-          <div class="absolute inset-0 flex items-end justify-end p-4">
-            @foreach ($project->tagCollection as $tag)
-              <label class="text-white text-center bg-gray-800/75 p-2 min-w-[58px] ms-1">{{$tag}}</label>
-            @endforeach
-          </div>              
-        </div>
-        <!--Inferior-->
-        <div class="flex flex-col mt-3">
-          <h2 class="text-[24px] font-bold ms-4">{{$project->title}}</h2>
-          <div class="flex items-center p-1 ps-4 min-h-[138px] md:min-h-[124px] lg:min-h-[110px]">
-            <p class="text-start text-[15px] lg:text-[18px]">
-              {!! $project->description !!}
-            </p>
-          </div>
-          
-        </div>
-        <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">
-          <a href="{{route('proyectos.show',$project)}}" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade text-center">
-            <p class="my-1">Ver mas</p>
-          </a>
-        </div>
-      </div>
-    @endforeach    
-
-    @if ($odd == false)
-      <!--Si es impar:-->
-      <div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">
-        <label class="text-[28px] text-center text-gray-400">Más proyectos próximamente...</label>
-      </div>
-      <!--end-->
-    @endif    
+  <div id="proj_container" class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">    
 
   </div>
+
+  <div class="bg-indigo-400 mt-4 mb-0 mx-8 rounded-full p-2 flex items-center justify-center proj-placeholder">
+    <label class="font-semibold text-white">CARGANDO PROYECTOS</label>
+    <img src="{{asset('img/gifs/loaders/loadCircle.gif')}}" class="max-h-[28px] ms-2">
+  </div>
+
+  <div class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-4 proj-placeholder">           
+
+    <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
+      <div class="relative">
+        <div class="bg-gray-200 min-h-[350px] rounded-t-md"></div>
+      </div>
+      <div class="flex flex-col mt-3">
+        <div class="p-2 bg-gray-200 max-w-[250px] ms-4 max-h-[32px]"></div>
+        <div class="flex flex-col p-1 ps-4 min-h-[138px] md:min-h-[124px] lg:min-h-[110px]">
+          <div class="bg-gray-200 max-w-[200px] min-h-[20px] m-1 mt-8"></div>
+          <div class="bg-gray-200 max-w-[300px] min-h-[20px] m-1"></div>
+        </div>
+      </div>
+      <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">
+        <a href="" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-gray-200 rounded-lg text-white font-semibold auto_fade text-center">
+          <p class="my-1"></p>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
+      <div class="relative">
+        <div class="bg-gray-200 min-h-[350px] rounded-t-md"></div>
+      </div>
+      <div class="flex flex-col mt-3">
+        <div class="p-2 bg-gray-200 max-w-[250px] ms-4 max-h-[32px]"></div>
+        <div class="flex flex-col p-1 ps-4 min-h-[138px] md:min-h-[124px] lg:min-h-[110px]">
+          <div class="bg-gray-200 max-w-[200px] min-h-[20px] m-1 mt-8"></div>
+          <div class="bg-gray-200 max-w-[300px] min-h-[20px] m-1"></div>
+        </div>
+      </div>
+      <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">
+        <a href="" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-gray-200 rounded-lg text-white font-semibold auto_fade text-center">
+          <p class="my-1"></p>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
 
 </section>
 
