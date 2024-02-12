@@ -3,6 +3,7 @@
 use App\Http\Controllers\API_ProjectController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\GeneralStatsController;
+use App\Http\Controllers\UserSlimController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +36,15 @@ route::controller(API_ProjectController::class)
 
 });
 
+// route::controller(UserSlimController::class)
+// ->group(function(){
+
+//     Route::post('/login','logIn');
+
+// });
+
 //Se necesita autentificacion! -> probablemente con jwt/firebase estaría.
-Route::post('/restartStat',[GeneralStatsController::class,'restartStat']);
+Route::post('/restartStat',[GeneralStatsController::class,'restartStat'])->middleware('isAuth');
 
 //public
 Route::post('/saveGeneralView',[GeneralStatsController::class,'newGeneralView'])->middleware('throttle:viewstat_rl');

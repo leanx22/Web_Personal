@@ -9,27 +9,24 @@ use App\Models\Link;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    //Display a listing of the resource.
     public function index()
     {
+        //QUITAR Y USAR API DESDE EL FRONT
         $projects = Project::orderBy('order','asc')->get();//Entiendo que se puede usar paginate, sin embargo, no voy a tener nunca tantos registros.
         $regs = count($projects);
+        //API
         return view('projects.index',['projects'=>$projects, 'count'=>$regs]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //Show the form for creating a new resource.
     public function create()
     {
         return view('projects.create',['title'=>'Nuevo proyecto', 'action'=>'Crear proyecto']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //Store a newly created resource in storage. //PARA LA API // ya esta en la API
     public function store(Request $request)
     {
         $request->validate([
@@ -76,7 +73,7 @@ class ProjectController extends Controller
         return redirect()->route('proyectos.index',['success'=>true]);    
     }
 
-    public function saveImage(Request $request):bool|string
+    public function saveImage(Request $request):bool|string //ya fue reworkeado y pasado a la API
     {
 
         $image = $request->file('img');
@@ -101,9 +98,7 @@ class ProjectController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //Display the specified resource. //API
     public function show(Project $project)
     {
         ////CAMBIAR A API/////
@@ -121,18 +116,14 @@ class ProjectController extends Controller
         return view('projects.show',['project'=>$project,'stats'=>$stats,'links'=>$links, 'disabled'=>"disabled"]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //Show the form for editing the specified resource.
     public function edit(Project $project)
     {
         $links = Link::where('project_id',$project->id)->firstOrFail();        
         return view('projects.edit',['title'=>'Editar', 'action'=>'Editar proyecto','project'=>$project,'links'=>$links]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //Update the specified resource in storage. //API
     public function update(Request $request, Project $project)
     {
         $oldData = $project;
@@ -187,9 +178,7 @@ class ProjectController extends Controller
         return redirect()->route('proyectos.index',['success'=>$success]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //Remove the specified resource from storage. //API
     public function destroy(string $id)
     {
         $project = Project::where('id',$id)->first();

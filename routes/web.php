@@ -46,6 +46,9 @@ Route::controller(LoginController::class)->group(function(){
 
     Route::get('/xlr8', 'showLoginForm')->name('login')->middleware('guest');
     Route::post('/xlr8', 'login');
+    Route::get('/redir',function(){
+        return redirect()->route('index');
+    });
 
 });
 

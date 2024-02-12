@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-
-use Firebase\JWT\JWT;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Profile;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Firebase\JWT\JWT;
+use Illuminate\Support\Facades\Hash;
 
-use Illuminate\Http\Response;
-
-class LoginController extends Controller
+class UserSlimController extends Controller
 {
 
     public function getToken(User $user, int $exp_time)
@@ -41,7 +36,7 @@ class LoginController extends Controller
         return true;
     }
 
-    public function logInAPI(Request $request)//no usar por ahora
+    public function logIn(Request $request)
     {
         $data = [
             "status" => 404,
@@ -59,35 +54,9 @@ class LoginController extends Controller
         
         $JWT = $this->getToken($user,30);
         $data["status"] = 200;
-        $data["message"] = "Token generado";
+        $data["message"] = "Sesion iniciada";
         $data["JWT"] = $JWT;
 
         return response()->json($data)->setStatusCode($data["status"]);
     }
-
-    public function showLoginForm()
-    {
-        return view('Auth.login');
-    }
-
-    public function login(Request $request)
-    {
-        $user_info = $request->only('email','password');
-               
-        if(!Auth::attempt($user_info))
-        {        
-            return redirect()->route('login');
-        }
-
-
-        $user = User::where('email',$request->email)->first();
-        $jwt_cookie = $this->getToken($user,30);
-        $response = new Response();
-        
-        //Evitar session fixation.
-        request()->session()->regenerate();
-        $response->cookie("JWT_AUTH_COOKIE",$jwt_cookie,30,'/','',false,false);
-        return redirect()->route('index');
-    }
-
 }
