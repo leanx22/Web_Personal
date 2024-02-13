@@ -17,17 +17,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-/*
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-*/
 
+//Agregar middleware de autentificacion
 route::controller(API_ProjectController::class)
 ->group(function(){
 
-    Route::get('/projects','getAllPublicProjects');
-    Route::get('/projects/{search}','getProjectData');
+    Route::get('/projects','index');
+    Route::get('/projects/search/{search}','show');
+
+    Route::post('/projects/store','store');
+    Route::post('/projects/update','update'); //cambiar entre PUT o PATCH?
+
+    Route::delete('/projects/destroy/{search}','destroy');
 
     Route::get('/projects/links/{search}','getLinksOfProject');
     Route::get('/projects/stats/{search}','getStatsOfProject');
@@ -35,13 +36,6 @@ route::controller(API_ProjectController::class)
     Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');
 
 });
-
-// route::controller(UserSlimController::class)
-// ->group(function(){
-
-//     Route::post('/login','logIn');
-
-// });
 
 //Se necesita autentificacion! -> probablemente con jwt/firebase estaría.
 Route::post('/restartStat',[GeneralStatsController::class,'restartStat'])->middleware('isAuth');

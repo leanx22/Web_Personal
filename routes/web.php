@@ -58,4 +58,4 @@ Route::controller(GeneralStatsController::class)->group(function(){
 
 });
 
-Route::get('/{section?}', HomeController::class)->name('index');
+//Route::get('/{section?}', HomeController::class)->name('index');
