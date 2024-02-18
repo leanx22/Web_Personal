@@ -3,6 +3,7 @@
 use App\Http\Controllers\API_ProjectController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\GeneralStatsController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserSlimController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,14 @@ route::controller(API_ProjectController::class)
     Route::get('/projects/stats/{search}','getStatsOfProject');
 
     Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');
+
+});
+
+route::controller(LoginController::class)
+->group(function(){
+
+    Route::post('/getJWT','loginAPI');
+    Route::get('/session/exit','logOut');
 
 });
 

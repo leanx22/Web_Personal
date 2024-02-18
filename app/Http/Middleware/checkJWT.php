@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\UserSlimController;
+use App\Http\Controllers\LoginController;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class checkJWT
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(UserSlimController::checkToken($request->_JWT)){
+        if(LoginController::checkToken($request->header('Authorization','<token>'))){
         return $next($request);
         }
         return redirect()->route('login');

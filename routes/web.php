@@ -45,7 +45,7 @@ Route::controller(ProjectController::class)
 Route::controller(LoginController::class)->group(function(){
 
     Route::get('/xlr8', 'showLoginForm')->name('login')->middleware('guest');
-    Route::post('/xlr8', 'login');
+    Route::post('/xlr8', 'login'); //reeplazado por ruta en API
     Route::get('/redir',function(){
         return redirect()->route('index');
     });
@@ -58,4 +58,4 @@ Route::controller(GeneralStatsController::class)->group(function(){
 
 });
 
-//Route::get('/{section?}', HomeController::class)->name('index');
+Route::get('/{section?}', HomeController::class)->name('index');

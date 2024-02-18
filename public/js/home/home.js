@@ -48,7 +48,7 @@ function saveNewPageView()
 
 function toggleProjectsPlaceHolder()
 {
-    $('.proj-placeholder').hasClass('hidden') ? $('.proj-placeholder').removeClassClass('hidden') : $('.proj-placeholder').addClass('hidden');
+    $('.proj-placeholder').hasClass('hidden') ? $('.proj-placeholder').remove('hidden') : $('.proj-placeholder').addClass('hidden');
 }
 
 function getProjects()

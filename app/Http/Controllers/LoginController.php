@@ -41,35 +41,40 @@ class LoginController extends Controller
         return true;
     }
 
-    public function logInAPI(Request $request)//no usar por ahora
+    public function showLoginForm()
+    {
+        return view('Auth.login');
+    }
+
+    //Funcion llamada por la ruta API, la cual otorga un JWT al cliente.
+    public function loginAPI(Request $request)
     {
         $data = [
             "status" => 404,
             "message" => "Las credenciales no corresponden a un usuario registrado",
             "JWT" => null,
         ];
-
-        $user = User::where('email',$request->email)->first();
-
         
-        if(!($user!=null && Hash::check($request->password, $user->password)))
-        {
+        $user_info = $request->only('email','password');
+               
+        if(!Auth::attempt($user_info))
+        {        
             return response()->json($data)->setStatusCode($data["status"]);
         }
         
+        //$request->session()->regenerate();
+        $user = User::where('email',$user_info["email"])->first();
+
         $JWT = $this->getToken($user,30);
+        
         $data["status"] = 200;
-        $data["message"] = "Token generado";
+        $data["message"] = "Sesion iniciada!";
         $data["JWT"] = $JWT;
 
         return response()->json($data)->setStatusCode($data["status"]);
-    }
+    }    
 
-    public function showLoginForm()
-    {
-        return view('Auth.login');
-    }
-
+    //Loguea al usuario normalmente.
     public function login(Request $request)
     {
         $user_info = $request->only('email','password');
@@ -78,16 +83,16 @@ class LoginController extends Controller
         {        
             return redirect()->route('login');
         }
-
-
-        $user = User::where('email',$request->email)->first();
-        $jwt_cookie = $this->getToken($user,30);
-        $response = new Response();
         
         //Evitar session fixation.
         request()->session()->regenerate();
-        $response->cookie("JWT_AUTH_COOKIE",$jwt_cookie,30,'/','',false,false);
         return redirect()->route('index');
+    }
+
+    public function logOut()
+    {
+        Auth::logout();
+        return response()->json(["seccess"=>true])->setStatusCode(200);
     }
 
 }
