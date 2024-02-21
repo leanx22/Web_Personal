@@ -19,25 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Agregar middleware de autentificacion
-route::controller(API_ProjectController::class)
-->group(function(){
-
-    Route::get('/projects','index');
-    Route::get('/projects/search/{search}','show');
-
-    Route::post('/projects/store','store');
-    Route::post('/projects/update','update'); //cambiar entre PUT o PATCH?
-
-    Route::delete('/projects/destroy/{search}','destroy');
-
-    Route::get('/projects/links/{search}','getLinksOfProject');
-    Route::get('/projects/stats/{search}','getStatsOfProject');
-
-    Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');
-
-});
-
 route::controller(LoginController::class)
 ->group(function(){
 
@@ -46,12 +27,31 @@ route::controller(LoginController::class)
 
 });
 
-//Se necesita autentificacion! -> probablemente con jwt/firebase estaría.
-Route::post('/restartStat',[GeneralStatsController::class,'restartStat'])->middleware('isAuth');
+route::controller(API_ProjectController::class)
+->group(function(){
 
-//public
-Route::post('/saveGeneralView',[GeneralStatsController::class,'newGeneralView'])->middleware('throttle:viewstat_rl');
-Route::post('/saveInteraction',[GeneralStatsController::class,'newInteraction'])->middleware('throttle:interaction_rl');
+    Route::get('/projects','index');
+    Route::get('/projects/search/{search}','show');
+    Route::get('/projects/links/{search}','getLinksOfProject');
+    Route::get('/projects/stats/{search}','getStatsOfProject');
+
+    Route::middleware('JWT.Auth')
+    ->group(function()
+    {    
+        Route::post('/projects/store','store');
+        Route::post('/projects/update','update'); //Podría ser PUT o PATCH
+        Route::delete('/projects/destroy/{search}','destroy');    
+        Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');   
+    });
+
+});
+
+route::controller(GeneralStatsController::class)
+->group(function(){
+    Route::post('/restartStat','restartStat')->middleware('JWT.Auth');
+    Route::post('/saveGeneralView','newGeneralView')->middleware('throttle:viewstat_rl');
+    Route::post('/saveInteraction','newInteraction')->middleware('throttle:interaction_rl');
+});
 
 //RL?
 Route::post('/saveContactInfo',[ContactFormController::class,'store']);

@@ -5,9 +5,14 @@ export default {
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
+    "./public/js/**/*.js",
   ],
   theme: {
     extend: {},
+    listStyleType:{
+      disc:'disc',
+      square:'square',
+    }
   },
   plugins: [],
 }

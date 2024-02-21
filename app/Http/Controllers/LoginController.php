@@ -10,19 +10,18 @@ use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Profile;
 use App\Models\User;
-
+use Firebase\JWT\Key;
 use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
-
-    public function getToken(User $user, int $exp_time)
+    public static function getToken(User $user, int $exp_time)
     {
         $key = env("JWT_SECRET");
         $now = time();
 
         $payload = [
-            "username" => $user->username,
+            "username" => $user->name,
             "profile" => Profile::where('id',$user->profile_id)->first(),
             "exp" => $now + ($exp_time*60),
         ];
@@ -30,15 +29,15 @@ class LoginController extends Controller
         return JWT::encode($payload,$key,'HS256');
     }
 
-    public static function checkToken($token):bool
+    public static function checkToken($token):array|false
     {
-        $key = env('JWT_SECRET');
+        $decode = null;
         try{
-            $decode = JWT::decode($token,$key);
+            $decode = (array)JWT::decode($token,new Key(env('JWT_SECRET'),'HS256'));
         }catch(\Throwable $e){
             return false;
         }
-        return true;
+        return $decode;
     }
 
     public function showLoginForm()

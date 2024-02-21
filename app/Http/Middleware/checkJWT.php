@@ -16,9 +16,15 @@ class checkJWT
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(LoginController::checkToken($request->header('Authorization','<token>'))){
-        return $next($request);
+        $token = $request->bearerToken();
+        $decoded = LoginController::checkToken($token);
+
+        if($decoded != null && $decoded != false){
+            $request->merge(['JWT' => $decoded]);
+            $request->headers->remove('Authorization');
+            return $next($request);
         }
-        return redirect()->route('login');
+        
+        return response()->json(["message"=>"No se pudo autenticar"])->setStatusCode(401);
     }
 }

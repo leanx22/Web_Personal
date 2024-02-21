@@ -25,17 +25,17 @@ function showMessage(message, success)
     let text = document.getElementById("message_text");
 
     container.classList.remove("bg-red-200");
-    container.classList.remove("bg-lime-400");
+    container.classList.remove("bg-lime-200");
 
     text.classList.remove("text-red-500");
-    text.classList.remove("text-white");
+    text.classList.remove("text-green-600");
 
     container.classList.remove("hidden")
     if(success == true)
     {
-        container.classList.add("bg-lime-400");
-        text.classList.add("text-black");
-        text.classList.add("font-semibold");
+        container.classList.add("bg-lime-200");
+        text.classList.add("text-green-600");
+        //text.classList.add("font-semibold");
     }
     else
     {
@@ -67,7 +67,7 @@ function login(e)
         sessionStorage.setItem('JWT_AUTH',response.JWT);
         showMessage(response.message+" Redireccionando...",true);
         
-        setTimeout(form.submit(),1500);
+        setTimeout(form.submit(),2000);
         
     }).fail((function(xhr, status, error){
 
@@ -85,11 +85,6 @@ function login(e)
         toggleBtn();
     });
 
-}
-
-function redirect(url)
-{
-    window.location.href = url;
 }
 
 

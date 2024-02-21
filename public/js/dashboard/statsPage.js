@@ -53,6 +53,9 @@ function restartStat(e)
         url:API_LINK+'/restartStat',
         dataType:"json",
         data:data,
+        headers:{
+            'Authorization':'Bearer '+sessionStorage.getItem('JWT_AUTH')
+           },
         async:true,
     }).done(function(response){
 

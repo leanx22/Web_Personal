@@ -201,6 +201,7 @@ class API_ProjectController extends Controller
         {
             $data["status"] = 404;
             $data["message"] = "No se encontró el proyecto";
+            $data["criterio"] = $request->search;
             return response()->json($data)->setStatusCode($data["status"]);
         }
 
@@ -306,7 +307,7 @@ class API_ProjectController extends Controller
         if(!$project)
         {
             $data["status"] = 404;
-            $data["message"]="No se encontró el proyecto";    
+            $data["message"]="No se encontró el proyecto: ".$search;    
             return response()->json($data)->setStatusCode($data["status"]);
         }
         

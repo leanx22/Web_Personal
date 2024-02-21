@@ -89,11 +89,11 @@ async function printProjects()
         let container = document.getElementById('proj_container');
         let bloque="";
 
-        for(const project of projects)
+        for(let project of projects)
         {            
 
             let tagshtml="";
-            for(const tag of project.tags)
+            for(let tag of project.tags)
             {
                 tagshtml+='<label class="text-white text-center font-semibold bg-gray-800 p-2 min-w-[58px] ms-1 rounded-lg">'+tag+'</label>\r\n';
             }
@@ -114,7 +114,7 @@ async function printProjects()
               </div>\
             </div>\
             <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">\
-              <a href="" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade text-center">\
+              <a href="'++'" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade text-center">\
                 <p class="my-1">Ver mas</p>\
               </a>\
             </div>\
