@@ -90,12 +90,12 @@
   <div id="proj_container" class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">    
 
   </div>
-
-  <div class="bg-indigo-400 mt-4 mb-0 mx-8 rounded-full p-2 flex items-center justify-center proj-placeholder">
-    <label class="font-semibold text-white">CARGANDO PROYECTOS</label>
-    <img src="{{asset('img/gifs/loaders/loadCircle.gif')}}" class="max-h-[28px] ms-2">
+  <div class="bg-gray-300 pt-2">
+    <div class="bg-indigo-400 mt-4 mb-0 mx-8 rounded-full p-2 flex items-center justify-center proj-placeholder">
+      <label class="font-semibold text-white">CARGANDO PROYECTOS</label>
+      <img src="{{asset('img/gifs/loaders/loadCircle.gif')}}" class="max-h-[28px] ms-2">
+    </div>
   </div>
-
   <div class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-4 proj-placeholder">           
 
     <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">

@@ -103,7 +103,7 @@ class ProjectController extends Controller
     {
         ////CAMBIAR A API/////
         Stat::where('project_id',$project->id)->increment('views');
-        
+        //////////////////////
         $stats = Stat::where('project_id',$project->id)->first();
         $links = Link::where('project_id',$project->id)->first();
         ///API////////////////

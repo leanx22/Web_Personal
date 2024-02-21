@@ -1,4 +1,4 @@
-import { API_LINK } from "../consts.js";
+import { API_LINK, WEB_LINK } from "../consts.js";
 
 function newRedirect(url)
 {
@@ -91,7 +91,7 @@ async function printProjects()
 
         for(let project of projects)
         {            
-
+            let link = WEB_LINK+"proyectos/"+project.slug;
             let tagshtml="";
             for(let tag of project.tags)
             {
@@ -114,7 +114,7 @@ async function printProjects()
               </div>\
             </div>\
             <div class="flex items-end justify-end p-1 min-h-[52px] max-h-[52px]">\
-              <a href="'++'" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade text-center">\
+              <a href="'+link+'" class="m-1 p-1 px-3 min-h-10 min-w-24 bg-black rounded-lg text-white font-semibold auto_fade text-center">\
                 <p class="my-1">Ver mas</p>\
               </a>\
             </div>\
