@@ -3,6 +3,11 @@
 @section('description','Ver el proyecto')
 @section('keywords',"{{$project->tags}}")
 
+@section('head')
+<script type="module" src="{{asset('js/consts.js')}}"></script>
+<script type="module" src="{{asset('js/project/show.js')}}"></script>
+@endsection
+
 @section('body')  
 <nav class="flex items-center bg-white dark:bg-gray-800 w-full p-4 shadow-md z-2">
     <a class="md:inline text-gray-400 dark:text-gray-200 mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="{{route('index',['section'=>'#proyectos'])}}">&larr; Volver al inicio</a>        

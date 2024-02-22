@@ -4,6 +4,7 @@ use App\Http\Controllers\API_ProjectController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\GeneralStatsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\UserSlimController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,11 @@ route::controller(GeneralStatsController::class)
     Route::post('/restartStat','restartStat')->middleware('JWT.Auth');
     Route::post('/saveGeneralView','newGeneralView')->middleware('throttle:viewstat_rl');
     Route::post('/saveInteraction','newInteraction')->middleware('throttle:interaction_rl');
+});
+
+route::controller(StatsController::class)
+->group(function(){
+    route::post('/projects/stat/increment','incrementStat')->middleware(/*'throttle:project_interaction_rl',*/ 'separate.project');
 });
 
 //RL?

@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
 
         'JWT.Auth' => \App\Http\Middleware\checkJWT::class,
         'verificar.sesion' => \App\Http\Middleware\AuthenticateApi::class,
+        'separate.project' => \App\Http\Middleware\getProjectMW::class,
     ];
 }

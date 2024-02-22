@@ -42,7 +42,11 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('project_interaction_rl', function (Request $request){
-            $key = $request->ip().$request->projectId.$request->type;
+            if(!$request->project || !$request->type)
+            {
+                return response()->json(["message"=>"Falta informacion en la request"])->setStatusCode(422);
+            }
+            $key = $request->ip().$request->project.$request->type;
             return Limit::perMinutes(10,1)->response(function (Request $request){
                 return response()->json(["message"=>"That project's interaction was already registered some minutes ago."])->setStatusCode(429);
             })->by($key);
