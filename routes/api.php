@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API_ProjectController;
+use App\Http\Controllers\API_projectLinkController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\GeneralStatsController;
 use App\Http\Controllers\LoginController;
@@ -32,9 +33,7 @@ route::controller(API_ProjectController::class)
 ->group(function(){
 
     Route::get('/projects','index');
-    Route::get('/projects/search/{search}','show');
-    Route::get('/projects/links/{search}','getLinksOfProject');
-    Route::get('/projects/stats/{search}','getStatsOfProject');
+    Route::get('/projects/{search}','show');
 
     Route::middleware('JWT.Auth')
     ->group(function()
@@ -56,7 +55,15 @@ route::controller(GeneralStatsController::class)
 
 route::controller(StatsController::class)
 ->group(function(){
-    route::post('/projects/stat/increment','incrementStat')->middleware(/*'throttle:project_interaction_rl',*/ 'separate.project');
+    route::post('/projects/stats/increment','incrementStat')->middleware(/*'throttle:project_interaction_rl',*/ 'separate.project');
+    Route::get('/projects/stats/{search}','getStats');
+});
+
+route::controller(API_projectLinkController::class)
+->group(function(){
+
+    Route::get('/projects/links/{search}','getLinksOfProject');    
+
 });
 
 //RL?

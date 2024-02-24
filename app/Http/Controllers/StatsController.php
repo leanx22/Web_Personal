@@ -49,4 +49,39 @@ class StatsController extends Controller
         return response()->json($data)->setStatusCode($data["status"]);
     }
 
+    public function getStats(string $search)
+    {
+        $data = [
+            "status" => 500,
+            "message" => null,
+            "criterio"=>$search,
+            "stats"=>[
+                "views"=>null,
+                "interactions"=>null
+            ]
+        ];
+
+        $project_id = Project::where('slug',$search)->orWhere('id',$search)->value('id');// -.-
+        if(!$project_id)
+        {
+            $data["status"] = 404;
+            $data["message"] = "No se encuentra el proyecto";
+            return response()->json($data)->setStatusCode($data["status"]);
+        }
+
+        $stats = Stat::where("project_id",$project_id)->first();
+        if(!$stats)
+        {
+            $data["status"] = 404;
+            $data["message"] = "No se encuentra la estadistica";
+            return response()->json($data)->setStatusCode($data["status"]);
+        }
+
+        $data["status"] = 200;
+        $data["message"] = "Aqui estan las estadisticas del proyecto";
+        $data["stats"]["views"] = $stats->views;
+        $data["stats"]["interactions"] = $stats->interactions;
+        return response()->json($data)->setStatusCode($data["status"]);
+    }
+
 }

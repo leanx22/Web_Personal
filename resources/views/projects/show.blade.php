@@ -20,16 +20,15 @@
         <div class="col-span-12 md:col-span-6 p-2 flex flex-col items-center min-w-[290px]">
             <img src="{{asset('img/'.$project->image)}}" class="rounded-md max-h-[250px] md:max-h-[350px]">
             <div class="p-1">
-                <small class="text-gray-500 dark:text-gray-300 ms-4">Veces visto: {{$stats->views}}</small>
-                <small class="text-gray-500 dark:text-gray-300 ms-8">Interacciones totales: {{$stats->interactions}}</small>
+                <small id="stat_views" class="text-gray-500 dark:text-gray-300 ms-4">Cargando vistas...</small>
+                <small id="stat_interactions" class="text-gray-500 dark:text-gray-300 ms-8">Cargando interacciones...</small>
             </div>
             <div class="flex flex-col items-center lg:w-full lg:px-4">
-                <button class="p-2 rounded-md bg-indigo-500 text-white font-bold min-w-[250px] min-h-[64px] lg:w-full lg:max-w-[375px] my-1 shadow-md
-                hover:bg-indigo-400 auto_fade disabled:bg-gray-300" {{$links->github == null ? 'disabled' : '' }}>GitHub</button>
+                <button id="btn_github" class="p-2 rounded-md bg-indigo-500 text-white font-bold min-w-[250px] min-h-[64px] lg:w-full lg:max-w-[375px] my-1 shadow-md
+                hover:bg-indigo-400 auto_fade disabled:bg-gray-300" disabled>GitHub</button>
                 
-                <button 
-                    class="p-2 rounded-md bg-lime-600 text-white font-bold min-w-[250px] min-h-[64px] lg:w-full lg:max-w-[375px] my-1 shadow-md
-                    hover:bg-lime-500 auto_fade disabled:bg-gray-300" {{$links->web == null ? 'disabled' : '' }}>Ver en web</button>
+                <button id="btn_web" class="p-2 rounded-md bg-lime-600 text-white font-bold min-w-[250px] min-h-[64px] lg:w-full lg:max-w-[375px] my-1 shadow-md
+                 hover:bg-lime-500 auto_fade disabled:bg-gray-300" disabled>Ver en web</button>
             </div>
         </div>
         <!--Desc&links-->

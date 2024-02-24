@@ -100,20 +100,8 @@ class ProjectController extends Controller
 
     //Display the specified resource. //API
     public function show(Project $project)
-    {
-        ////CAMBIAR A API/////
-        Stat::where('project_id',$project->id)->increment('views');
-        //////////////////////
-        $stats = Stat::where('project_id',$project->id)->first();
-        $links = Link::where('project_id',$project->id)->first();
-        ///API////////////////
-        
-        if($stats == null || $project == null || $links == null)
-        {
-            return 'Ocurrio un error';
-        }        
-
-        return view('projects.show',['project'=>$project,'stats'=>$stats,'links'=>$links, 'disabled'=>"disabled"]);
+    {     
+        return view('projects.show',['project'=>$project]);
     }
 
     //Show the form for editing the specified resource.

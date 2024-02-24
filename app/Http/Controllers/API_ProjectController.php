@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class API_ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * Get all public projects.
-     */
+
     public function index() //Si estoy autenticado deberia poder ver los proyectos privados
     {
         $data = [
@@ -45,9 +42,7 @@ class API_ProjectController extends Controller
         return response()->json($data)->setStatusCode(200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $data = [
@@ -141,10 +136,7 @@ class API_ProjectController extends Controller
         }                  
     }
 
-    /**
-     * Display the specified resource.
-     * Get project data.
-     */
+
     public function show(string $search) //Si estoy autenticado debería porder ver los proyectos privados
     {
         $project = Project::where('id',$search)->orWhere('slug',$search)->first();        
@@ -160,33 +152,20 @@ class API_ProjectController extends Controller
             return response()->json($data)->setStatusCode($project ? 403:404); //Por seguridad, siempre debería retornar 404.
         }
 
-        $links = Link::where('project_id',$project->id)->first();
-        $stats = Stat::where('project_id',$project->id)->first();
-
-        $project->makeHidden(['visible']);
+        $project->makeHidden(['visible','order']);
 
         $data = [
             "criterio"=>$search,
             "message"=>"Busqueda exitosa",
             "resultado"=>[
                 "proyecto"=>$project,
-                "enlaces"=>[
-                    "github"=>$links->github,
-                    "web"=>$links->web
-                ],
-                "estadisticas"=>[
-                    "vistas"=>$stats->views,
-                    "interacciones"=>$stats->interactions
-                ]
             ]
         ];
        
         return response()->json($data)->setStatusCode(200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request)
     {
         $search = $request->search;
@@ -292,9 +271,7 @@ class API_ProjectController extends Controller
         return $newImage;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $search)
     {
         $data = [            
@@ -321,37 +298,7 @@ class API_ProjectController extends Controller
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Esto debería estar en el controlador de c/u, no es buena práctica esto
-    function getLinksOfProject(Request $request, $search)
-    {
-        $project = Project::where('id',$search)->orWhere('slug',$search)->first();        
-
-        $data = [
-            "status"=>500,
-            "criterio"=>$search,
-            "message"=>null,
-            "success"=>false,
-            "results"=>null
-        ];
-
-        if(!$project || $project->visible == false)
-        {
-            $data["status"]=$project ? 403:404;
-            $data["message"]=$project ? "Proyecto privado":"No encontrado";
-    
-            return response()->json($data)->setStatusCode($data["status"]);
-        }
-
-        $links = Link::where('project_id',$project->id)->first();
-
-        $data["status"]=200;
-        $data["message"] = "Operacion exitosa";
-        $data["results"] = ["github"=>$links->github,"web"=>$links->web,];
-
-        return response()->json($data)->setStatusCode($data["status"]);
-
-    }
-
+    //Esto debería estar en el controlador de c/u, no es buena práctica esto    
     function getStatsOfProject(Request $request, $search)
     {
         $project = Project::where('id',$search)->orWhere('slug',$search)->first();        
