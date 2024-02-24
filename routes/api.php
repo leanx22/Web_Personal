@@ -6,8 +6,6 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\GeneralStatsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StatsController;
-use App\Http\Controllers\UserSlimController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,7 +53,7 @@ route::controller(GeneralStatsController::class)
 
 route::controller(StatsController::class)
 ->group(function(){
-    route::post('/projects/stats/increment','incrementStat')->middleware(/*'throttle:project_interaction_rl',*/ 'separate.project');
+    route::post('/projects/stats/increment','incrementStat')->middleware('throttle:project_interaction_rl', 'separate.project');
     Route::get('/projects/stats/{search}','getStats');
 });
 
