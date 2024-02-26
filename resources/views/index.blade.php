@@ -222,28 +222,30 @@ style="
   </div>
 </section>  
 
-<footer class="bg-white min-h-[64px] p-4 z-10 relative">
+<hr class="border-2 m-0 border-gray-600"></hr>
+
+<footer class="bg-gray-700 text-gray-400 min-h-[64px] p-4 z-10 relative">
+  
   <div class="min-w-full grid grid-cols-12">
     
-    <span class="text-gray-500 col-span-full md:col-span-8 lg:col-span-4">
-      <h3 class="font-semibold">Contacto:</h3>
-      <ul class="ps-2">
+    <span class="col-span-full md:col-span-8 lg:col-span-4">
+      <h3 class="">Contacto:</h3>
+      <ul class="ps-2 font-light">
         <li>email: <a href="mailto: leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></li>                  
       </ul>      
     </span>
 
-    <span class="text-gray-500 col-span-full md:col-span-8 lg:col-span-4">
-      <h3 class="font-semibold">Recursos:</h3>
-      <ul class="ps-2">
+    <span class="col-span-full md:col-span-8 lg:col-span-4 mb-4 md:mb-0">
+      <h3 class="">Recursos:</h3>
+      <ul class="ps-2 font-light">
         <li><a href="https://icons8.com/icon/8808/linkedin" target="_blank">LinkedIn logo por <strong>icons8</strong></a></li>                  
         <li><a href="https://icons8.com/icon/12599/github" target="_blank">Github logo por <strong>icons8</strong></a></li> 
-        <li><a href="https://unsplash.com/es/@trnavskauni?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank">Foto de Trnava University de <strong>Unsplash</strong></a></li> 
+        <li><a href="https://www.freepik.com/free-vector/code-typing-concept-illustration_10594781.htm" target="_blank">SVG estudiante por storySet en <strong>Freepik</strong></a></li>   
       </ul>      
     </span>
 
-    <span class="text-gray-500 col-span-full md:col-span-4 lg:col-span-4">
-      <h3 class="font-semibold">Gracias:</h3>
-      <p>Aún sigo trabajando cada día en mejorar la página :)</p>     
+    <span class="col-span-full md:col-span-4 lg:col-span-4 flex items-center justify-center md:items-start md:justify-start lg:items-center lg:justify-center">
+      <h3 class="font-semibold text-[18px] text-gray-500">LEANDRO GUIA - 2024</h3>  
     </span>
 
   </div>
@@ -321,4 +323,7 @@ pibe sentado: <a href="https://www.vecteezy.com/free-vector/programmer">Programm
 pibe sentado mejor: <a href="https://www.freepik.com/free-vector/programmer-concept-illustration_8775515.htm#fromView=search&page=1&position=6&uuid=64e77108-c93f-437c-8a34-527783347aaa">Image by storyset on Freepik</a>
 
 otro mas svg: <a href="https://www.freepik.com/free-vector/code-typing-concept-illustration_10594781.htm#from_view=detail_alsolike">Image by storyset on Freepik</a>
+
+<a href="https://www.freepik.com/free-vector/code-typing-concept-illustration_10594781.htm#from_view=detail_alsolike">Image by storyset</a> on Freepik
+
 -->
