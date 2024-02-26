@@ -95,10 +95,10 @@ async function printProjects()
             let tagshtml="";
             for(let tag of project.tags)
             {
-                tagshtml+='<label class="text-white text-center font-semibold bg-gray-800 p-2 min-w-[58px] ms-1 rounded-lg">'+tag+'</label>\r\n';
+                tagshtml+='<label class="text-white text-center font-semibold bg-white/25 backdrop-blur-lg p-2 min-w-[58px] ms-1 rounded-lg">'+tag+'</label>\r\n';
             }
             
-            bloque += '<div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">\
+            bloque += '<div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-20 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">\
             <div class="relative">\
               <img class="rounded-t-lg min-w-full min-h-full" src="img/'+project.image+'" alt="Imagen del proyecto">\
               <div class="absolute inset-0 flex items-end justify-end p-4">\
@@ -124,7 +124,7 @@ async function printProjects()
         //Si es impar, coloco una tarjeta para mejorar el diseno
         if((projects.length)%2 != 0)
         {
-            bloque += '<div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">\
+            bloque += '<div class="col-span-12 md:col-span-6 flex items-center justify-center bg-gray-100 mx-2 xl:mx-20 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14">\
             <label class="w-full h-auto text-[29px] lg:text-[38px] text-center text-gray-400 font-semibold">Más proyectos próximamente...</label></div>';
         }
 
@@ -138,9 +138,25 @@ async function printProjects()
     console.timeEnd("Proyectos");
 }
 
+function changeNavBg()
+{
+    var navbar = document.getElementById('navbar');
+    if (window.scrollY > 150) {
+        navbar.classList.add('backdrop-blur-md');
+        navbar.classList.add('bg-black/50');
+        navbar.classList.add('shadow-md');
+    } else {
+        navbar.classList.remove('backdrop-blur-md');
+        navbar.classList.remove('bg-black/50');
+        navbar.classList.remove('shadow-md');
+        //hacer transparente
+    }
+}
 
 $(function(){                        
 
+    window.addEventListener('scroll', changeNavBg);
+    
     $("#linkedinBtn").on("click", function(){newRedirect("https://www.linkedin.com/in/leandro-guia-dev/")});
     $("#githubBtn").on("click", function(){newRedirect("https://github.com/leanx22")});
     

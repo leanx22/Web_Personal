@@ -7,34 +7,44 @@
 <script type="module" src="{{asset('js/consts.js')}}"></script>
 <script type="module" src="{{asset('js/home/home.js')}}"></script>
 <script type="module" src="{{asset('js/home/contactForm.js')}}"></script>
+<script type="module" src="{{asset('js/home/animation.js')}}"></script>
 @endsection
 
 @section('body')
 
-<nav class="absolute flex items-center top-0 w-full p-4 pt-2 z-2">
-  <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#proyectos">Proyectos</a>
-  <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#aboutme">Sobre mi</a>
-  <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#conocimientos">Conocimientos</a>
-  <a class="hidden md:inline text-white font-bold mx-3 text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#educacion">Educacion</a>
+<nav class="font-com font-light text-[16px] lg:text-[18px] fixed flex items-center top-0 w-full p-2 transition duration-1000 ease-in-out z-50" id="navbar">
+  <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#proyectos">Proyectos</a>
+  <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#aboutme">Sobre mi</a>
+  <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#conocimientos">Conocimientos</a>
+  <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#educacion">Educacion</a>
+  <div class="rounded-md hidden md:inline flex items-center justify-center relative">
+    <a class="text-white mx-3 hover:text-[#4ea5fc]" href="#educacion">README</a>
+    <span class="absolute -top-1 -right-1 bg-red-500/75 text-white w-3 h-3 flex items-center justify-center rounded-full animate-ping_sm"></span>
+    <span class="absolute -top-1 -right-1 bg-red-500 text-white w-3 h-3 flex items-center justify-center rounded-full"></span>
+  </div>
+  
   @auth
-  <a href="{{route('dashboard.index')}}" class="text-white font-bold text-lg bg-[#fcdc4e] py-2 px-5 rounded-full min-w-28 min-h-10 z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">Ir al panel</a>
+  <a href="{{route('dashboard.index')}}" class="text-black font-medium text-md bg-[#fcdc4e] ms-4 py-2 px-5 rounded-full min-w-28 min-h-10 z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">Ir al panel</a>
   @endauth
-  <button id="contactBtn" class="text-white font-bold text-lg bg-[#4ea5fc] py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>  
+  <button id="contactBtn" class="text-white font-medium text-md bg-[#4ea5fc] me-5 py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>
 </nav>
 
 <main>
 <!--Seccion 'hero'-->
-<div class="md:min-h-screen w-full">
+<div class="md:min-h-screen w-full top-0 sticky z-10">
   <div class="md:min-h-screen w-full bg-[#212121] grid grid-cols-12 grid-flow-col spacing">    
     <!--Presentacion+links-->
-    <div class="flex flex-col col-span-full lg:col-span-6 xl:col-span-7 justify-center">
+    <div class="flex flex-col col-span-full xl:col-span-7 justify-center">
       
       <div class="mx-auto">
         
-        <h1 class="mt-20 text-[48px] text-white md:text-[98px] lg:text-[72px] xl:text-[114px] font-bold text-center leading-10">Leandro Guia</h1><!--114-->
-        <p class="text-white text-[32px] md:text-[98px] xl:text-[114px] font-bold leading-tight text-center md:text-end"><span class="text-[#4ea5fc] hover:text-red-500 auto_fade">web</span> /dev</p>
-      
-        <div class="mt-10 mb-3 md:mb-0 flex justify-center">
+        <h1 class="font-lexend font-light mt-20 text-[38px] text-white md:text-[98px] lg:text-[72px] xl:text-[114px] text-center leading-10
+        animate-fade-in-right animate-duration-500">Leandro Guia</h1><!--114-->
+        <div class="animate-fade-in-right animate-duration-500 animate-delay-300 font-lexend font-light">
+          <p class="text-white text-[32px] md:text-[64px] leading-relaxed text-center xl:text-end">Desarrollador <span class="text-blue-400">web</span></p>
+        </div>
+        <div class="mt-10 mb-3 md:mb-0 flex justify-center
+        animate-fade-in-up animate-duration-300 animate-delay-300">
           <button id="linkedinBtn" class="btn_icon mx-8">
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" alt="linkedin"/>
           </button>
@@ -48,54 +58,58 @@
     </div>
     
     <!--Foto-->
-    <div class="hidden lg:block lg:display-block lg:min-h-full lg:col-span-6 xl:col-span-5 z-1">
-      <img src="{{asset('img/personal/fotoPersonal.jpg')}}" class="w-full h-full grayscale brightness-50 z-1"/>
+    <div class="hidden xl:block xl:display-block xl:min-h-full xl:col-span-5">
+        <img src="{{asset('img/personal/fotoPersonal.jpg')}}" class="w-full h-full grayscale brightness-50"/> 
     </div>
-
-    <!--Scroll-->
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
-      <img src="{{asset('img/icons/UI/sd.png')}}" class="max-h-[32px] max-w-[32px] ms-8 mt-4">
-    </div>
-
   </div>
-  <div class="bg-[#4ea5fc] min-w-full min-h-8"></div>
+  <div class="bg-white min-w-full min-h-2"></div>
 </div>
 
-<!--AboutMe-->
-<section id="aboutme">
-  <div class="p-4 pt-[150px] pb-[150px] lg:px-11 py-auto bg-gradient-to-b from-gray-200 to-white grid grid-flow-col grid-cols-12">
-    
-    <div class="flex flex-col justify-center items-center lg:items-start lg:justify-start lg:ps-10 col-span-12 lg:col-span-5 min-h-96 p-2 lg:pt-8 rounded-lg lg:rounded-s-xl lg:rounded-e-none">
-      <h2 class="text-[48px] lg:text-[72px] text-gray-700 font-bold text-center lg:text-left">Sobre mí</h2>
-      <p class="text-[21px] text-center lg:text-left text-gray-700">
+<!--AboutMe relative-->
+<section id="aboutme" class="z-20 relative">
+  <div class="p-4 lg:px-11 bg-gray-900 grid grid-flow-col grid-cols-12 min-h-screen">    
+    <div class="my-auto font-com flex flex-col justify-center items-center lg:items-start lg:justify-start lg:ps-10 col-span-12 lg:col-span-5 min-h-96 p-2 lg:pt-8 rounded-lg lg:rounded-s-xl lg:rounded-e-none">
+      <h2 class="scrollIn left-to-right text-[48px] lg:text-[72px] text-gray-200 font-bold text-center lg:text-left justify-center">Sobre mí</h2>
+      <p class="scrollIn left-to-right animate-delay-500 text-[21px] text-center lg:text-left text-gray-200">
         Tengo 21 años, estudiante de una <strong>Tecnicatura universitaria en programación</strong> en la universidad
-        <a class="hover:bg-gray-800 rounded-full p-1 text-[20px] min-h-[34px] auto_fade underline hover:no-underline hover:text-white" href="https://fra.utn.edu.ar/" target="_blank">UTN-FRA</a>.
+        <a class="hover:bg-red-400 rounded-full p-1 text-[20px] min-h-[34px] auto_fade underline hover:no-underline" href="https://fra.utn.edu.ar/" target="_blank">UTN-FRA</a>.
         Me considero una persona responsable, seria y comprometida.
         Actualmente busco formar parte de una empresa que me permita demostrar y aplicar mis conocimientos, que me brinde la posibilidad de crecer y 
         mejorar mi habilidad en el código cada día.
       </p>
     </div>
 
-    <div class="hidden lg:flex flex-col items-center justify-center lg:col-span-7 min-h-96 rounded-e-xl">        
-      <img src="{{asset('img/photos/programacion.jpg')}}" class="max-w-[550px] rounded-lg rotate-3 shadow-lg hover:scale-95 hover:rotate-1 transition duration-100 ease-out">
+    <div class="hidden lg:flex flex-col items-center justify-center lg:col-span-7 min-h-96 rounded-e-xl scrollIn">        
+      <img src="{{asset('img/art/10594781_4498901.svg')}}" class="animate-bounce max-w-[850px] rounded-lg rotate-3 drop-shadow-md hover:rotate-2 transition duration-700 ease-out">
     </div>
 
   </div>
 </section>
 </main>
-
 <!--Projs-->
-<section id="proyectos">
+<section id="proyectos" class="z-20 relative bg-fixed bg-cover"
+style="
+  background-image: url('./img/photos/escritorio.jpg');
+  background-position-y:100%;
+">
+  <div class="backdrop-blur-sm bg-gray-900/50">
+    <div class="min-w-screen flex items-center justify-center flex-col p-4">
+      <h2 class="scrollIn bot-to-top mt-8 font-com font-bold text-[42px] lg:text-[48px] xl:text-[52px] 2xl:text-[64px] text-white">-PROYECTOS-</h2>
+    </div>
 
-  <div id="proj_container" class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10">    
-
+    <div id="proj_container" class="grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10 font-com">    
+      <!-- los proj se autocopletaran aca -->
+    </div>
   </div>
-  <div class="bg-gray-300 pt-2">
+  <!--PlaceHolderTitle-->
+  <div class="bg-gray-300">
     <div class="bg-indigo-400 mt-4 mb-0 mx-8 rounded-full p-2 flex items-center justify-center proj-placeholder">
       <label class="font-semibold text-white">CARGANDO PROYECTOS</label>
       <img src="{{asset('img/gifs/loaders/loadCircle.gif')}}" class="max-h-[28px] ms-2">
     </div>
   </div>
+
+  <!--PlaceHolderCard-->
   <div class="bg-gray-300 grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-4 proj-placeholder">           
 
     <div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-8 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">
@@ -140,14 +154,20 @@
 </section>
 
 <!--Conocimientos-->
-<section id="conocimientos" class="lg:sticky lg:top-0 lg:-z-10">
-  <div class="bg-gradient-to-b from-sky-200 to-indigo-400 pt-20 pb-44 grid grid-auto-flow grid-cols-12 items-center justify-center">
+<section id="conocimientos" class="z-10 relative font-com bg-fixed"
+style="
+  background-image: url('./img/photos/programacion.jpg');
+  background-position-y:100%;
+">
+  <hr class="border-2"></hr>
+
+  <div class="bg-gradient-to-b from-gray-700/50 to-indigo-400/50 backdrop-blur-sm pt-20 pb-44 grid grid-auto-flow grid-cols-12 items-center justify-center">
       <div class="col-span-12 lg:col-span-4 mb-14 lg:pt-14 2xl:pt-24 flex flex-col items-center justify-center lg:items-start lg:justify-start p-3 lg:ps-20">
         <h2 class="text-[48px] text-white font-semibold text-center lg:text-start">Conocimientos</h2>
-        <p class="text-center lg:text-start text-white font-semibold text-[22px] lg:text-[23px] 2xl:text-[28px]">Me mantengo al día, utilizando, aprendiendo y manteniendo proyectos que utilizan las siguientes tecnologías.</p>
+        <p class="text-center lg:text-start text-white font-semibold text-[22px] lg:text-[23px] 2xl:text-[28px]">Me mantengo al día utilizando, aprendiendo y manteniendo proyectos que utilizan las siguientes tecnologías.</p>
       </div>
 
-      <div class="p-4 col-span-12 lg:col-span-8">
+      <div class="p-4 col-span-12 lg:col-span-8 mt-16">
         <div class="w-full grid grid-auto-flow grid-cols-12 lg:grid-cols-5 2xl:grid-cols-6">
           <img src="{{asset('img/icons/techs/laravel.png')}}" class="col-span-6 md:col-span-3 lg:col-span-1 lg:max-w-[92px] lg:max-h-[92px] 2xl:max-w-[124px] 2xl:max-h-[124px] mx-auto boxify hover_zoom_in">
           <img src="{{asset('img/icons/techs/php.png')}}" class="col-span-6 md:col-span-3 lg:col-span-1 lg:max-w-[92px] lg:max-h-[92px] 2xl:max-w-[124px] 2xl:max-h-[124px] mx-auto boxify hover_zoom_in">
@@ -167,13 +187,15 @@
       </div>
     </div>
   </div>
+
+  <hr class="border-2"></hr>
 </section>
 
-<section id="educacion" style="background-image: url('img/photos/libros.jpg')">
-  <div class="w-screen h-screen flex flex-col items-center justify-center px-4 backdrop-blur-sm">
-    <h2 class="text-white text-[42px] md:text-[48px] xl:text-[58px] font-bold">Educación</h2>
+<section id="educacion" class="z-10 relative">
+  <div class="w-screen h-screen flex flex-col items-center justify-center px-4 bg-gray-900">
+    <h2 class="text-white text-[42px] md:text-[48px] xl:text-[58px] font-com font-bold">Educación</h2>
     <!--Universidad-->
-    <div class="bg-white min-w-[350px] max-w-[350px] md:max-w-[740px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in">
+    <div class="bg-white min-w-[350px] max-w-[350px] md:max-w-[740px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in z-10">
       <div class="flex items-center justify-center md:min-w-[140px]">
         <img src="img/extras/UTN-small-logo.jpg">
       </div>
@@ -200,7 +222,7 @@
   </div>
 </section>  
 
-<footer class="bg-white min-h-[64px] p-4">
+<footer class="bg-white min-h-[64px] p-4 z-10 relative">
   <div class="min-w-full grid grid-cols-12">
     
     <span class="text-gray-500 col-span-full md:col-span-8 lg:col-span-4">
@@ -234,7 +256,7 @@
   <div class="bg-neutral-700 px-8 py-4 rounded-sm shadow-lg max-w-[650px]">
       
     <h2 class="text-xl font-bold mb-4 text-white">Trabajemos juntos.</h2>
-    <p class="text-white mb-4">¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que pueda ponerme en contacto con usted a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="px-2 py-1 bg-blue-500 font-semibold rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
+    <p class="text-white mb-4">¡Gracias por el interés!<br>A continuación, puede completar este sencillo formulario para que me ponga en contacto a la brevedad, o si así lo prefiere, puede contactar conmigo directamente via email: <a class="px-2 py-1 bg-blue-500 font-semibold rounded-md" href="mailto:leandro.guia.dev@gmail.com">leandro.guia.dev@gmail.com</a></p>
     <hr class="min-h-[3px] rounded-full bg-white bg-opacity-50 border-none">
       
     <form class="mt-4" id="contactForm">
@@ -293,5 +315,10 @@
 <a  href="https://icons8.com/icon/12599/github">GitHub</a> icon by <a href="https://icons8.com">Icons8</a>
 
 Foto de <a href="https://unsplash.com/es/@trnavskauni?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Trnava University</a> en <a href="https://unsplash.com/es/fotos/estanteria-de-madera-marron-con-libros-BEEyeib-am8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  
+
+pibe sentado: <a href="https://www.vecteezy.com/free-vector/programmer">Programmer Vectors by Vecteezy</a>
+
+pibe sentado mejor: <a href="https://www.freepik.com/free-vector/programmer-concept-illustration_8775515.htm#fromView=search&page=1&position=6&uuid=64e77108-c93f-437c-8a34-527783347aaa">Image by storyset on Freepik</a>
+
+otro mas svg: <a href="https://www.freepik.com/free-vector/code-typing-concept-illustration_10594781.htm#from_view=detail_alsolike">Image by storyset on Freepik</a>
 -->

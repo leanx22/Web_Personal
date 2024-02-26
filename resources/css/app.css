@@ -1,3 +1,7 @@
+@import '@fontsource-variable/lexend';
+@import '@fontsource-variable/phudu';
+@import '@fontsource-variable/comfortaa';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,9 +9,9 @@
 @layer components{
 
     .btn_icon{
-        @apply bg-[#4ea5fc] border border-[#4ea5fc]
-        rounded-full shadow-md hover:bg-[#212121] hover:scale-90 transition 
-        duration-500 ease-in-out min-h-[65px] min-w-[65px] md:min-h-[100px] md:min-w-[100px] flex items-center justify-center
+        @apply bg-blue-500 border-4 border-blue-500
+        rounded-full shadow-md hover:bg-blue-400 hover:border-blue-400 hover:scale-105 transition 
+        duration-500 ease-in-out min-h-[65px] min-w-[125px] md:min-h-[75px] md:min-w-[275px] flex items-center justify-center
     }
 
     .btn_default{
@@ -46,4 +50,5 @@
     .little_error{
         @apply text-red-400 font-semibold
     }
+        
 }

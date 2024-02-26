@@ -14,6 +14,11 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@fontsource-variable/comfortaa": "^5.0.18",
+        "@fontsource-variable/lexend": "^5.0.18",
+        "@fontsource-variable/phudu": "^5.0.18",
+        "@fontsource/corinthia": "^5.0.18",
+        "@midudev/tailwind-animations": "^0.0.7",
         "jquery": "^3.7.1"
     }
 }
