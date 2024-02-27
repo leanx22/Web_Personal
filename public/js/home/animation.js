@@ -1,28 +1,34 @@
-const observer = new IntersectionObserver((elementos)=>{
+const animations = {
+    'fade-in': 'fade-in-play',
+    'fade-in-blur':'fade-in-blur-play',
+    'fade-in-right-blur': 'fade-in-right-blur-play',
+    'fade-in-up-blur': 'fade-in-up-blur-play',
+    'fade-in-left-blur': 'fade-in-left-blur-play',
+};
 
-    elementos.forEach((elemento)=>{
-        if(elemento.isIntersecting)
-        {           
-            if(elemento.target.classList.contains('left-to-right'))
-            {
-                elemento.target.classList.add("animate-fade-in-right");
-            }else if(elemento.target.classList.contains('bot-to-top'))
-            {
-                elemento.target.classList.add("animate-fade-in-up");
+$(function(){
+
+    const observer = new IntersectionObserver((elementos) => {
+        elementos.forEach(elemento => {
+            if (elemento.isIntersecting) {
+                const animationClass = Object.keys(animations).find(key => elemento.target.classList.contains(key));
+                if (animationClass) {
+                    elemento.target.classList.add(animations[animationClass]);
+                }
             }
             else
             {
-                elemento.target.classList.add("animate-fade-in-left");
+                const animationClass = Object.keys(animations).find(key => elemento.target.classList.contains(key));
+                elemento.target.classList.remove(animations[animationClass]);
             }
-            
-            elemento.target.classList.add("animate-duration-1000");
-        }
+        });
+    });
+    
+    const hiddenElements = document.querySelectorAll('.animated');
+    console.log(hiddenElements);
+    hiddenElements.forEach((elemento)=>{
+        observer.observe(elemento);
     });
 
 });
 
-const hiddenElements = document.querySelectorAll('.scrollIn');
-console.log(hiddenElements);
-hiddenElements.forEach((elemento)=>{
-    observer.observe(elemento);
-});

@@ -5,9 +5,8 @@
 Como desarrollador web me veía en la obligación de programar mi propia web que muestre los distintos proyectos realizados a lo largo de mi carrera como estudiante, y próximamente como profesional. Sin embargo, me parecía un poco aburrida la idea de sólo utilizar <strong>HTML y Tailwind</strong> para crear una página simple que no se me presente como un <strong>"desafío"</strong>, por lo que decidí llevar la idea un poco mas allá e intentar <strong>aprender lo máximo posible durante el proceso</strong>.</p>
 
 <h2> Panel de control / Dashboard. </h2>
-<p>Mientras programaba la parte del front-end pensaba qué cosas interesantes podría implementar a la página, algo que me facilite el uso y me brinde información de forma sencilla, por lo que se me ocurrio agregar un <strong>DASHBOARD</strong>. Obviamente, no podría permitir que cualquier usuario ingrese al mismo, por lo que debí implementar un <strong>sistema de autentificación</strong>, el cual, por suerte laravel incluye uno bastante fácil de usar.</p>
+<p>Mientras programaba la parte del front-end pensaba qué cosas interesantes podría implementar a la página, algo que me facilite el uso y me brinde información de forma sencilla, por lo que se me ocurrio agregar un <strong>DASHBOARD</strong>. Obviamente, no podría permitir que cualquier usuario ingrese al mismo, por lo que debí implementar un <strong>sistema de autenticación</strong>, el cual por suerte laravel, incluye uno bastante fácil de usar.</p>
 <img src="https://lh3.googleusercontent.com/d/1A6CbQwr9wENyS72gyElU0FbyAx516-FY=w1000" alt="Captura de pantalla del inicio de sesion">
-<small>Imagen del inicio de sesion</small>
 <br>
 <p>Una vez se inicia sesión, se redirige a la página principal la cual ahora tendrá un nuevo botón que <strong>da acceso al panel de control</strong>.</p>
 <img src="https://lh3.googleusercontent.com/d/15FwUrtb7zB8L2Tq5RXy5ZYmjn12bMLqC=w1000" alt="Captura de pantalla que muestra el boton activado">
@@ -24,7 +23,7 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 <img src="https://lh3.googleusercontent.com/d/1ndSQISAeuB7XHi-5ZBFZpd3iQ9GUAlKP" alt="Captura del panel de estadísticas">
 <img src="https://lh3.googleusercontent.com/d/1xqaldNXRzZTBnD-26oHF30usU8I9i6p6" alt="Captura del popup de confirmacion al querer reiniciar una estadistica">
 
-> Cabe aclarar que estas estadisticas cuentan con un <strong>"Rate limit"</strong>, es decir, si el usuario recarga la página varias veces, la estadística de visitas totales <strong>sólo aumentará una vez</strong>(y así con las demás), esto es para evitar visitas "fantasma".
+> Cabe aclarar que estas estadisticas cuentan con un <strong>"Rate limit"</strong>, es decir, si el usuario recarga la página varias veces, la estadística de visitas totales <strong>sólo aumentará una vez</strong> (y así con las demás), esto es para evitar visitas "fantasma".
 
 <h3>Proyectos dinámicos</h3>
 <p>En el apartado de <strong> proyectos </strong> se encuentra el listado de mis proyectos (almacenados en una base de datos <strong>MySQL</strong>). Aquí es donde realizo las distintas operaciones con mis proyectos, tales como:</p>
@@ -44,8 +43,8 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 <ul>
 <li>Identificación mediante un <strong>slug único</strong></li>
 <li><strong>Etiquetas</strong> que se mostrarán en la página principal.</li>
-<li>Posibilidad de establecer el proyecto como <strong>PRIVADO o NO VISIBLE</strong> para el público.</li>
-<li>Capacidad de indicar en que <strong>orden</strong> debe mostrarse el proyecto en la página principal.</li>
+<li>Posibilidad de establecer si el proyecto es <strong>VISIBLE O NO</strong> para el público en la página inicial.</li>
+<li>Capacidad de indicar en qué <strong>orden</strong> debe mostrarse el proyecto en la página principal.</li>
 </ul>
 
 <img src="https://lh3.googleusercontent.com/d/13aCGkeFAaEqwEjWW1_c5qhT2OXaRyl_3">
@@ -55,4 +54,9 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 <h3>Resultados</h3>
 <p>Gracias a este sistema podemos ver los siguientes resultados: </p>
 <img src="https://lh3.googleusercontent.com/d/17Swa3EXa3A69tLvS_rQhoHA23Mp-kieB">
-<p>Donde podemos observar cómo se ven los proyectos una vez creados, nótese las <strong>etiquetas en la parte inferior derecha de las imágenes de cada proyecto</strong>, como así también un botón de <strong>ver más</strong> el cual nos redirige a la página del proyecto que veremos a continuación. Por último, <strong>si los proyectos son impares</strong> se colocará un placeholder con el texto "Más proyectos prócimamente" para ocupar el espacio faltante.</p>
+<p>Donde podemos observar cómo se ven los proyectos una vez creados, nótese las <strong>etiquetas en la parte inferior derecha de las imágenes de cada proyecto</strong>, como así también un botón de <strong>ver más</strong> el cual nos redirige a <strong>la página del proyecto</strong> que veremos a continuación. Por último, <strong>si los proyectos son impares</strong> se colocará un "placeholder" con el texto "Más proyectos próximamente" para ocupar el espacio faltante.</p>
+
+<h3>Página del proyecto</h3>
+<p>Al dar click en el botón de "ver más" accederemos a la página del proyecto para ver su información detallada. Además es importante destacar que debajo de su imágen podremos ver <strong>sus estadísticas como así también los respectivos enlaces (github y web / los botones se desactivan si no se especificó el link al crear el proyecto)</strong></p>
+
+<img src="https://lh3.googleusercontent.com/d/1dE8Ejd5VhIl-ipdh2lcqq-_Kq8rl6ENi">

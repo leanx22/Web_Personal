@@ -8,6 +8,7 @@
 <script type="module" src="{{asset('js/home/home.js')}}"></script>
 <script type="module" src="{{asset('js/home/contactForm.js')}}"></script>
 <script type="module" src="{{asset('js/home/animation.js')}}"></script>
+<link rel="stylesheet" href="{{asset('css/animate.css')}}">
 @endsection
 
 @section('body')
@@ -18,7 +19,7 @@
   <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#conocimientos">Conocimientos</a>
   <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#educacion">Educacion</a>
   <div class="rounded-md hidden md:inline flex items-center justify-center relative">
-    <a class="text-white mx-3 hover:text-[#4ea5fc]" href="#educacion">README</a>
+    <a class="text-white mx-3 hover:text-[#4ea5fc]" href="https://github.com/leanx22/Web_Personal/tree/new-front?tab=readme-ov-file#readme" target="_blank">README</a>
     <span class="absolute -top-1 -right-1 bg-red-500/75 text-white w-3 h-3 flex items-center justify-center rounded-full animate-ping_sm"></span>
     <span class="absolute -top-1 -right-1 bg-red-500 text-white w-3 h-3 flex items-center justify-center rounded-full"></span>
   </div>
@@ -39,9 +40,10 @@
       <div class="mx-auto">
         
         <h1 class="font-lexend font-light mt-20 text-[38px] text-white md:text-[98px] lg:text-[72px] xl:text-[114px] text-center leading-10
-        animate-fade-in-right animate-duration-500">Leandro Guia</h1><!--114-->
-        <div class="animate-fade-in-right animate-duration-500 animate-delay-300 font-lexend font-light">
-          <p class="text-white text-[32px] md:text-[64px] leading-relaxed text-center xl:text-end">Desarrollador <span class="text-blue-400">web</span></p>
+        animated anim-duration-medium fade-in-right-blur">Leandro Guia</h1><!--114-->
+        <div class="animated anim-duration-slow font-lexend font-light">
+          <p class="text-white text-[32px] md:text-[64px] leading-relaxed text-center xl:text-end
+          animated anim-duration-medium fade-in-up-blur">Desarrollador <span class="text-blue-400">web</span></p>
         </div>
         <div class="mt-10 mb-3 md:mb-0 flex justify-center
         animate-fade-in-up animate-duration-300 animate-delay-300">
@@ -68,9 +70,10 @@
 <!--AboutMe relative-->
 <section id="aboutme" class="z-20 relative">
   <div class="p-4 lg:px-11 bg-gray-900 grid grid-flow-col grid-cols-12 min-h-screen">    
-    <div class="my-auto font-com flex flex-col justify-center items-center lg:items-start lg:justify-start lg:ps-10 col-span-12 lg:col-span-5 min-h-96 p-2 lg:pt-8 rounded-lg lg:rounded-s-xl lg:rounded-e-none">
-      <h2 class="scrollIn left-to-right text-[48px] lg:text-[72px] text-gray-200 font-bold text-center lg:text-left justify-center">Sobre mí</h2>
-      <p class="scrollIn left-to-right animate-delay-500 text-[21px] text-center lg:text-left text-gray-200">
+    <div class="my-auto font-com flex flex-col justify-center items-center lg:items-start lg:justify-start lg:ps-10 col-span-12 lg:col-span-5 min-h-96 p-2 lg:pt-8 rounded-lg lg:rounded-s-xl lg:rounded-e-none
+    animated anim-duration-medium fade-in-up-blur">
+      <h2 class="text-[48px] lg:text-[72px] text-gray-200 font-bold text-center lg:text-left justify-center">Sobre mí</h2>
+      <p class="text-[21px] text-center lg:text-left text-gray-200">
         Tengo 21 años, estudiante de una <strong>Tecnicatura universitaria en programación</strong> en la universidad
         <a class="hover:bg-red-400 rounded-full p-1 text-[20px] min-h-[34px] auto_fade underline hover:no-underline" href="https://fra.utn.edu.ar/" target="_blank">UTN-FRA</a>.
         Me considero una persona responsable, seria y comprometida.
@@ -79,8 +82,9 @@
       </p>
     </div>
 
-    <div class="hidden lg:flex flex-col items-center justify-center lg:col-span-7 min-h-96 rounded-e-xl scrollIn">        
-      <img src="{{asset('img/art/10594781_4498901.svg')}}" class="animate-bounce max-w-[850px] rounded-lg rotate-3 drop-shadow-md hover:rotate-2 transition duration-700 ease-out">
+    <div class="hidden lg:flex flex-col items-center justify-center lg:col-span-7 min-h-96 rounded-e-xl overflow-hidden">        
+      <img src="{{asset('img/art/10594781_4498901.svg')}}" class="max-w-[850px] rounded-lg rotate-3 drop-shadow-md hover:rotate-2 transition duration-700 ease-out
+      animated anim-duration-medium fade-in-left-blur">
     </div>
 
   </div>
@@ -94,7 +98,8 @@ style="
 ">
   <div class="backdrop-blur-sm bg-gray-900/50">
     <div class="min-w-screen flex items-center justify-center flex-col p-4">
-      <h2 class="scrollIn bot-to-top mt-8 font-com font-bold text-[42px] lg:text-[48px] xl:text-[52px] 2xl:text-[64px] text-white">-PROYECTOS-</h2>
+      <h2 class="bot-to-top mt-8 font-com font-bold text-[42px] lg:text-[48px] xl:text-[52px] 2xl:text-[64px] text-white
+      animated anim-duration-medium fade-in-right-blur">-PROYECTOS-</h2>
     </div>
 
     <div id="proj_container" class="grid grid-flow-row md:grid-auto-flow grid-cols-12 px-2 md:px-3 pt-10 font-com">    
@@ -162,12 +167,13 @@ style="
   <hr class="border-2"></hr>
 
   <div class="bg-gradient-to-b from-gray-700/50 to-indigo-400/50 backdrop-blur-sm pt-20 pb-44 grid grid-auto-flow grid-cols-12 items-center justify-center">
-      <div class="col-span-12 lg:col-span-4 mb-14 lg:pt-14 2xl:pt-24 flex flex-col items-center justify-center lg:items-start lg:justify-start p-3 lg:ps-20">
+      <div class="col-span-12 lg:col-span-4 mb-14 lg:pt-14 2xl:pt-24 flex flex-col items-center justify-center lg:items-start lg:justify-start p-3 lg:ps-20
+      animated anim-duration-medium fade-in-right-blur">
         <h2 class="text-[48px] text-white font-semibold text-center lg:text-start">Conocimientos</h2>
         <p class="text-center lg:text-start text-white font-semibold text-[22px] lg:text-[23px] 2xl:text-[28px]">Me mantengo al día utilizando, aprendiendo y manteniendo proyectos que utilizan las siguientes tecnologías.</p>
       </div>
 
-      <div class="p-4 col-span-12 lg:col-span-8 mt-16">
+      <div class="p-4 col-span-12 lg:col-span-8 mt-16 animated anim-duration-medium fade-in-blur">
         <div class="w-full grid grid-auto-flow grid-cols-12 lg:grid-cols-5 2xl:grid-cols-6">
           <img src="{{asset('img/icons/techs/laravel.png')}}" class="col-span-6 md:col-span-3 lg:col-span-1 lg:max-w-[92px] lg:max-h-[92px] 2xl:max-w-[124px] 2xl:max-h-[124px] mx-auto boxify hover_zoom_in">
           <img src="{{asset('img/icons/techs/php.png')}}" class="col-span-6 md:col-span-3 lg:col-span-1 lg:max-w-[92px] lg:max-h-[92px] 2xl:max-w-[124px] 2xl:max-h-[124px] mx-auto boxify hover_zoom_in">
@@ -195,7 +201,8 @@ style="
   <div class="w-screen h-screen flex flex-col items-center justify-center px-4 bg-gray-900">
     <h2 class="text-white text-[42px] md:text-[48px] xl:text-[58px] font-com font-bold">Educación</h2>
     <!--Universidad-->
-    <div class="bg-white min-w-[350px] max-w-[350px] md:max-w-[740px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in z-10">
+    <div class="bg-white min-w-[350px] max-w-[350px] md:max-w-[740px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in z-10
+    animated anim-duration-medium fade-in-right-blur">
       <div class="flex items-center justify-center md:min-w-[140px]">
         <img src="img/extras/UTN-small-logo.jpg">
       </div>
@@ -209,7 +216,8 @@ style="
     </div>
     
     <!--Secundario-->
-    <div class="bg-white min-w-[350px] max-w-[350px] md:min-w-[740px] md:max-w-[850px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in">
+    <div class="bg-white min-w-[350px] max-w-[350px] md:min-w-[740px] md:max-w-[850px] rounded-lg p-1 flex flex-col md:flex-row min-h-[120px] mb-4 shadow-lg hover_zoom_in
+    animated anim-duration-slow fade-in-right-blur">
       <div class="flex items-center justify-center md:min-w-[140px]">
         <img src="img/extras/Regina-logo.png">
       </div>

@@ -1,0 +1,66 @@
+.anim-duration-slow{
+    transition: all 2s;
+}
+
+.anim-duration-medium{
+    transition: all 1s;
+}
+
+.anim-duration-fast{
+    transition: all 0.5s;
+}
+
+
+.fade-in{
+    opacity: 0;    
+}
+
+.fade-in-play{
+    opacity: 1;
+}
+
+.fade-in-blur{
+    opacity: 0;
+    filter: blur(5px);   
+}
+
+.fade-in-blur-play{
+    opacity: 1;
+    filter: blur(0);
+}
+
+.fade-in-right-blur{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-25%);
+}
+
+.fade-in-right-blur-play{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.fade-in-left-blur{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(+25%);
+}
+
+.fade-in-left-blur-play{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+.fade-in-up-blur{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(+25%);
+}
+
+.fade-in-up-blur-play{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
