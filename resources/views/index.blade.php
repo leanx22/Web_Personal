@@ -8,7 +8,7 @@
 <script type="module" src="{{asset('js/home/home.js')}}"></script>
 <script type="module" src="{{asset('js/home/contactForm.js')}}"></script>
 <script type="module" src="{{asset('js/home/animation.js')}}"></script>
-<link rel="stylesheet" href="{{asset('css/animate.css')}}">
+<link rel="stylesheet" href="{{asset('css/animations.css')}}">
 @endsection
 
 @section('body')
