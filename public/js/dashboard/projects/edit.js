@@ -35,7 +35,6 @@ function editProject()
        contentType:false
     }).done(function(response){
 
-        console.log("Todo OK");
         window.location.replace(WEB_LINK+"proyectos");
 
     }).fail(function(xhr, status, error){
@@ -83,7 +82,7 @@ function deleteProject()
        contentType:false
     }).done(function(response){
 
-        console.log("eliminado");
+        window.location.replace(WEB_LINK+"proyectos");
 
     }).fail(function(xhr, status, error){
         console.error(error);

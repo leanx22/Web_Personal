@@ -25,7 +25,6 @@ $(function(){
     });
     
     const hiddenElements = document.querySelectorAll('.animated');
-    console.log(hiddenElements);
     hiddenElements.forEach((elemento)=>{
         observer.observe(elemento);
     });
