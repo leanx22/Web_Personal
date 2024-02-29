@@ -9,7 +9,7 @@
 <script type="module" src="{{asset('js/dashboard/statsPage.js')}}"></script>
 @endsection
 
-<body class="bg-gray-700">
+<body class="bg-stone-700">
 
     @include('layouts.partials.dashboardNav')
 
@@ -28,9 +28,25 @@
         </div>
     </div>
 
+    <!--CONTAINER-->
+    <div id="stats_container" class="mx-2 md:mx-4 grid grid-flow-row grid-cols-2 grid-rows-4 gap-8">
+      
+      <!--CARD-->
+      <div class="bg-stone-800 rounded-lg col-span-full md:col-span-1 shadow-lg flex items-center">
+        <div class="flex">
+          <img src="{{asset('img/icons/UI/inbox.svg')}}" class="w-[32px] ms-4">
+          <h2 class="text-stone-300 font-semibold ms-2 text-[22px]">Contacto:</h2>
+        </div>        
+        <div class="flex items-center justify-end me-4 w-full">
+          <p class="text-stone-300 font-semibold text-[52px] me-8">0</p>
+          <a href="#"><img src="{{asset('img/icons/UI/restart.svg')}}" class="w-[32px] opacity-10"></a>
+        </div>
+      </div>
+
+    </div>
 
 
-    <div id="stats_container" class="min-w-full flex flex-col items-center justify-center p-4 pt-0">
+    {{-- <div id="stats_container" class="min-w-full flex flex-col items-center justify-center p-4 pt-0">
             
         <h2 class="font-bold text-[18px] text-gray-400">GENERAL</h2>
         
@@ -71,5 +87,5 @@
             </div>
             <button id="restart_github" class="bg-red-400 rounded-b-md p-1 font-semibold text-white">Reiniciar</button>                  
         </div>
-    </div>
+    </div> --}}
 </body>

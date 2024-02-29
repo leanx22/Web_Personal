@@ -1,11 +1,11 @@
 <nav class="bg-gray-900 w-full shadow-md z-2 mb-8">
-    <div class="grid grid-cols-12 bg-gray-800 px-3">
+    <div class="grid grid-cols-12 bg-stone-800 px-3">
         <div class="col-span-2 my-auto">
-            <a href="{{route('index')}}"><img src="{{asset('img/icons/UI/monitor.svg')}}" class="w-[42px] hover:bg-blue-200/50 transition duration-200 ease-in-out rounded-lg"></a>
+            <a href="{{route('index')}}"><img src="{{asset('img/icons/UI/monitor.svg')}}" class="w-[42px] hover:bg-blue-200/50 transition duration-200 ease-in-out rounded-lg"></a>            
         </div>
 
         <div class="flex flex-row-reverse items-center col-span-10">
-            <a><img src="{{asset('img/icons/UI/log_out.svg')}}" class="w-[38px] mx-4"></a>
+            <a><img src="{{asset('img/icons/UI/inbox.svg')}}" class="w-[38px] mx-4"></a>
 
             <span class="flex items-center flex-row-reverse md:me-8 py-1 px-0 md:px-2
             {{request()->routeIs('proyectos.index') ? 'bg-gradient-to-t from-blue-500/50':'bg-none'}}">
