@@ -10,7 +10,4 @@
     @yield('head')
     <title>@yield('title')</title>
 </head>
-<body class="bg-gray-200">
-    @yield('body')
-</body>
 </html>

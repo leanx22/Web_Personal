@@ -8,8 +8,8 @@
 <script type="module" src="{{asset('js/dashboard/projects/create.js')}}"></script>
 @endsection
 
-@section('body')    
-<nav class="flex items-center bg-white dark:bg-gray-800 w-full p-4 shadow-md z-2 mb-8">
+<body class="bg-gray-700">  
+<nav class="flex items-center bg-gray-800 w-full p-4 shadow-md z-2 mb-8">
     <a href="{{route('proyectos.index')}}" class="md:inline text-red-300 dark:text-gray-200 mx-3 text-[12px] md:text-[18px] hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#proyectos">
         &larr; Cancelar</a>        
 </nav>
@@ -101,5 +101,5 @@
         <button id="close_errors" class="m-1 text-red-800 opacity-70 underline">Cerrar</button>
     </div>
 </div>
-
+</body>
 </html>

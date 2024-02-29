@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{{asset('css/animations.css')}}">
 @endsection
 
-@section('body')
+<body>
 
 <nav class="font-com font-light text-[16px] lg:text-[18px] fixed flex items-center top-0 w-full p-2 transition duration-1000 ease-in-out z-50" id="navbar">
   <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#proyectos">Proyectos</a>
@@ -27,7 +27,7 @@
   @auth
   <a href="{{route('dashboard.index')}}" class="text-black font-medium text-md bg-[#fcdc4e] ms-4 py-2 px-5 rounded-full min-w-28 min-h-10 z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">Ir al panel</a>
   @endauth
-  <button id="contactBtn" class="text-white font-medium text-md bg-[#4ea5fc] me-5 py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>
+  <button id="contactBtn" class="text-white font-semibold text-md bg-[#4ea5fc] me-5 py-2 px-5 rounded-full min-w-28 min-h-10 place-self-end ml-auto z-10 hover:bg-gray-50 hover:text-black transition duration-500 ease-in-out shadow-lg">contacto</button>
 </nav>
 
 <main>
@@ -259,7 +259,7 @@ style="
   </div>
 </footer>
 
-
+</body>
 
 <!--POPUP-->
 <div id="contactPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
@@ -313,9 +313,6 @@ style="
 
   </div>
 </div>
-
-
-@endsection
 
 <!--ICONS
 <a  href="https://icons8.com/icon/8808/linkedin">LinkedIn</a> icon by <a href="https://icons8.com">Icons8</a>
