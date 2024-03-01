@@ -6,7 +6,7 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 
 <h2> Panel de control / Dashboard. </h2>
 <p>Mientras programaba la parte del front-end pensaba qué cosas interesantes podría implementar a la página, algo que me facilite el uso y me brinde información de forma sencilla, por lo que se me ocurrio agregar un <strong>DASHBOARD</strong>. Obviamente, no podría permitir que cualquier usuario ingrese al mismo, por lo que debí implementar un <strong>sistema de autenticación</strong>, el cual por suerte laravel, incluye uno bastante fácil de usar.</p>
-<img src="https://lh3.googleusercontent.com/d/1A6CbQwr9wENyS72gyElU0FbyAx516-FY=w1000" alt="Captura de pantalla del inicio de sesion">
+<img src="https://lh3.googleusercontent.com/d/1ejxkFJxtRMGZmZpNaJgz3wXEh9crVVYl" alt="Captura de pantalla del inicio de sesion">
 <br>
 <p>Una vez se inicia sesión, se redirige a la página principal la cual ahora tendrá un nuevo botón que <strong>da acceso al panel de control</strong>.</p>
 <img src="https://lh3.googleusercontent.com/d/15FwUrtb7zB8L2Tq5RXy5ZYmjn12bMLqC=w1000" alt="Captura de pantalla que muestra el boton activado">
