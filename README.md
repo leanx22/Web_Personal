@@ -20,8 +20,10 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 <li><strong>Cantidad de clicks</strong> al botón de contacto.</li>
 </ul>
 
-<img src="https://lh3.googleusercontent.com/d/1ndSQISAeuB7XHi-5ZBFZpd3iQ9GUAlKP" alt="Captura del panel de estadísticas">
-<img src="https://lh3.googleusercontent.com/d/1xqaldNXRzZTBnD-26oHF30usU8I9i6p6" alt="Captura del popup de confirmacion al querer reiniciar una estadistica">
+<img src="https://lh3.googleusercontent.com/d/1hNokYq3EKK_4bC7cpocqVRDPPE_nQHlE"
+alt="Captura del panel de estadísticas">
+<img src="https://lh3.googleusercontent.com/d/1bRSRAwGLfXKsMyZ-Vkq3ThPrnF0Bvj8X" 
+alt="Captura del popup de confirmacion al querer reiniciar una estadistica">
 
 > Cabe aclarar que estas estadisticas cuentan con un <strong>"Rate limit"</strong>, es decir, si el usuario recarga la página varias veces, la estadística de visitas totales <strong>sólo aumentará una vez</strong> (y así con las demás), esto es para evitar visitas "fantasma".
 
@@ -33,11 +35,11 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 <li><strong>Editar y eliminar</strong> proyectos</li>
 </ul>
 
-<img src="https://lh3.googleusercontent.com/d/1PisD2YgieLnzIhygZGQh_k6eWS6y0gDx">
+<img src="https://lh3.googleusercontent.com/d/1580SQP4ABp8HRKBRmkF7nq7NSm0O6qGP">
 
-<img src="https://lh3.googleusercontent.com/d/17gb_ADpSVTnUfOLTCUfLzLME2sse-55u">
+<img src="https://lh3.googleusercontent.com/d/1PfwovCGOmkEt6rO1gmK87kvhxo89mmxu">
 
-<img src="https://lh3.googleusercontent.com/d/1aPiGCZQovGxgQ3nnF-2zLsIjV96L3Mj9">
+<img src="https://lh3.googleusercontent.com/d/1lOk0i0SluL9P435U516knERItxsDnfEX">
 
 <p>Los formularios cuentan con <strong>validación de datos en el backend</strong>, laravel hace que su aplicación sea muy fácil. También puede verse distintos parámetros interesantes como:</p>
 <ul>
@@ -47,7 +49,7 @@ Como desarrollador web me veía en la obligación de programar mi propia web que
 <li>Capacidad de indicar en qué <strong>orden</strong> debe mostrarse el proyecto en la página principal.</li>
 </ul>
 
-<img src="https://lh3.googleusercontent.com/d/13aCGkeFAaEqwEjWW1_c5qhT2OXaRyl_3">
+<img src="https://lh3.googleusercontent.com/d/1cqOhZzaqlVojK1on3ZGvcaAIJzXAknou">
 
 <p>Las distintas operaciones se realizan haciendo uso de una <strong>API  REST propia</strong> creada en laravel. Mi API cuenta con rutas <strong>PÚBLICAS y PRIVADAS</strong> (las cuales <strong>necesitan un token JWT para poder ser accedidas</strong>). Esta API es utilizada en toda la página para distintas tareas.</p>
 
