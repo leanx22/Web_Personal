@@ -14,10 +14,10 @@
     @include('layouts.partials.dashboardNav')
 
     <!--POPUP-->
-    <div id="confirmPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
-        <div class="bg-gray-200 px-8 py-4 rounded-sm shadow-lg max-w-[650px]">
+    <div id="confirmPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm">
+        <div class="bg-stone-800 px-8 py-4 rounded-sm shadow-lg max-w-[650px] text-gray-200">
             
-        <h2 class="text-xl font-bold mb-4 text-black">Confirmar</h2>
+        <h2 class="text-xl font-bold mb-4">Confirmar</h2>
         <p class="text-red-400 font-semibold">NO HAY VUELTA ATRÁS:</p>
         <p class="mb-4"> Esta accion NO puede deshacerse, haga click en CONFIRMAR para continuar.</p>
         <hr class="min-h-[3px] rounded-full bg-white bg-opacity-50 border-none">
