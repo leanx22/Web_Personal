@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Models\Project;
 use App\Models\Stat;
-use GrahamCampbell\ResultType\Success;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;//borrar
 use Illuminate\Support\Facades\Validator;
 
 class API_ProjectController extends Controller
