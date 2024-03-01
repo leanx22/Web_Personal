@@ -14,7 +14,7 @@
     @include('layouts.partials.dashboardNav')
 
     <!--POPUP-->
-    <div id="confirmPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm">
+    <div id="confirmPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30 backdrop-blur-sm hidden">
         <div class="bg-stone-800 px-8 py-4 rounded-sm shadow-lg max-w-[650px] text-gray-200">
             
         <h2 class="text-xl font-bold mb-4">Confirmar</h2>
