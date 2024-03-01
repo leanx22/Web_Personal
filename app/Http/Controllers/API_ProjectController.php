@@ -269,19 +269,19 @@ class API_ProjectController extends Controller
     }
 
 
-    public function destroy(string $search)
+    public function destroy(Request $request)
     {
         $data = [            
             "status"=>500,
             "message"=>"No se pudo eliminar el proyecto",
         ];
 
-        $project = Project::where('id',$search)->orWhere('slug',$search)->first();        
+        $project = Project::where('id',$request->search)->orWhere('slug',$request->search)->first();        
 
         if(!$project)
         {
             $data["status"] = 404;
-            $data["message"]="No se encontró el proyecto: ".$search;    
+            $data["message"]="No se encontró el proyecto: ".$request->search;    
             return response()->json($data)->setStatusCode($data["status"]);
         }
         

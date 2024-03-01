@@ -100,7 +100,6 @@
     </form>
     <form id="del_form" method="POST" class="bg-stone-800 md:max-w-[700px] mx-4 md:mx-auto rounded-md p-4 flex flex-col shadow-lg">
         @csrf
-        @method("DELETE")
         <input type="hidden" name="search" value="{{$project->slug}}">
         <button id="deleteBtn" class="bg-red-300 rounded-md p-2">Eliminar proyecto</button>
     </form>

@@ -69,12 +69,14 @@ function editProject()
 
 function deleteProject()
 {
-    var form_data = new FormData($("#del_form")[0]);
+    var form_data = new FormData($("#del_form")[0]);    
+
     $.ajax({
-       type:'DELETE',
+       type:'POST',
        async:true,
        dataType:'json',
-       url:API_LINK+'/projects/destroy/'+form_data.get("search"),
+       url:API_LINK+'/projects/destroy',
+       data:form_data,
        headers:{
         'Authorization':'Bearer '+sessionStorage.getItem('JWT_AUTH')
        },
@@ -82,7 +84,7 @@ function deleteProject()
        contentType:false
     }).done(function(response){
 
-        window.location.replace(WEB_LINK+"proyectos");
+        //window.location.replace(WEB_LINK+"proyectos");
 
     }).fail(function(xhr, status, error){
         console.error(error);

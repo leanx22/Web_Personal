@@ -38,7 +38,7 @@ route::controller(API_ProjectController::class)
     {    
         Route::post('/projects/store','store');
         Route::post('/projects/update','update'); //Podría ser PUT o PATCH
-        Route::delete('/projects/destroy/{search}','destroy');    
+        Route::post('/projects/destroy','destroy');    
         Route::post('/projects/saveInteraction','changeProjectStat')->middleware('throttle:project_interaction_rl');   
     });
 
