@@ -19,7 +19,7 @@
   <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#conocimientos">Conocimientos</a>
   <a class="hidden md:inline text-white mx-3 hover:text-[#4ea5fc] transition duration-200 ease-in-out" href="#educacion">Educacion</a>
   <div class="rounded-md hidden md:inline flex items-center justify-center relative">
-    <a class="text-white mx-3 hover:text-[#4ea5fc]" href="https://github.com/leanx22/Web_Personal/tree/new-front?tab=readme-ov-file#readme" target="_blank">README</a>
+    <a class="text-white mx-3 hover:text-[#4ea5fc]" href="https://github.com/leanx22/Web_Personal/tree/main?tab=readme-ov-file#readme" target="_blank">README</a>
     <span class="absolute -top-1 -right-1 bg-red-500/75 text-white w-3 h-3 flex items-center justify-center rounded-full animate-ping_sm"></span>
     <span class="absolute -top-1 -right-1 bg-red-500 text-white w-3 h-3 flex items-center justify-center rounded-full"></span>
   </div>
