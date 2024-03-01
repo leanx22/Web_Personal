@@ -39,7 +39,7 @@ function restartStat(e)
 
     if(column == false)
     {
-        console.log("ID no coincidente en getColumn()");
+        console.error("ID no coincidente en getColumn()");
         return;
     }
 
@@ -91,6 +91,7 @@ function toggleButtons()
 
 function getColumn(btnID)
 {
+    console.warn(btnID);
     let column;
     switch(btnID){
         case 'restart_views':

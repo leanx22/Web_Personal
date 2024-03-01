@@ -34,58 +34,48 @@
       <!--CARD-->
       <div class="bg-stone-800 rounded-lg col-span-full md:col-span-1 shadow-lg flex items-center">
         <div class="flex">
-          <img src="{{asset('img/icons/UI/inbox.svg')}}" class="w-[32px] ms-4">
+          <img src="{{asset('img/icons/UI/eye.svg')}}" class="w-[32px] ms-4 opacity-70">
+          <h2 class="text-stone-300 font-semibold ms-2 text-[22px]">Visitas:</h2>
+        </div>        
+        <div class="flex items-center justify-end me-4 w-full">
+          <p class="text-stone-300 font-semibold text-[52px] me-8">{{$stats->visitas}}</p>
+          <button id="restart_views"><img id="restart_views" src="{{asset('img/icons/UI/restart.svg')}}" class="w-[32px] opacity-10"></button>
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-lg col-span-full md:col-span-1 shadow-lg flex items-center">
+        <div class="flex">
+          <img src="{{asset('img/icons/UI/contact.svg')}}" class="w-[32px] ms-4 opacity-70">
           <h2 class="text-stone-300 font-semibold ms-2 text-[22px]">Contacto:</h2>
         </div>        
         <div class="flex items-center justify-end me-4 w-full">
-          <p class="text-stone-300 font-semibold text-[52px] me-8">0</p>
-          <a href="#"><img src="{{asset('img/icons/UI/restart.svg')}}" class="w-[32px] opacity-10"></a>
+          <p class="text-stone-300 font-semibold text-[52px] me-8">{{$stats->interacciones_contacto}}</p>
+          <button id="restart_contact"><img id="restart_contact" src="{{asset('img/icons/UI/restart.svg')}}" class="w-[32px] opacity-10"></button>
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-lg col-span-full md:col-span-1 shadow-lg flex items-center">
+        <div class="flex">
+          <img src="{{asset('img/icons/UI/linkedin.svg')}}" class="w-[32px] ms-4 opacity-70">
+          <h2 class="text-stone-300 font-semibold ms-2 text-[22px]">Linkedin:</h2>
+        </div>        
+        <div class="flex items-center justify-end me-4 w-full">
+          <p class="text-stone-300 font-semibold text-[52px] me-8">{{$stats->vistas_linkedin}}</p>
+          <button id="restart_linkedin"><img id="restart_linkedin" src="{{asset('img/icons/UI/restart.svg')}}" class="w-[32px] opacity-10"></button>
+        </div>
+      </div>
+
+      <div class="bg-stone-800 rounded-lg col-span-full md:col-span-1 shadow-lg flex items-center">
+        <div class="flex">
+          <img src="{{asset('img/icons/UI/github.svg')}}" class="w-[32px] ms-4 opacity-70">
+          <h2 class="text-stone-300 font-semibold ms-2 text-[22px]">GitHub:</h2>
+        </div>        
+        <div class="flex items-center justify-end me-4 w-full">
+          <p class="text-stone-300 font-semibold text-[52px] me-8">{{$stats->visitas_github}}</p>
+          <button id="restart_github"><img id="restart_github" src="{{asset('img/icons/UI/restart.svg')}}" class="w-[32px] opacity-10"></button>
         </div>
       </div>
 
     </div>
 
-
-    {{-- <div id="stats_container" class="min-w-full flex flex-col items-center justify-center p-4 pt-0">
-            
-        <h2 class="font-bold text-[18px] text-gray-400">GENERAL</h2>
-        
-        <hr class="bg-gray-300 h-[2px] w-full max-w-[600px] mb-2 border-0">
-        
-        <div class="bg-white rounded-md min-w-[300px] w-full max-w-[650px] flex flex-col shadow-md mb-8">
-            <div class="flex justify-between items-center p-4">
-                <h2 class="font-semibold text-gray-400">Visitas totales:</h2>
-                <p class="font-semibold text-[32px] text-gray-400 me-12">{{$stats->visitas}}</p>
-            </div>
-            <button id="restart_views" class="bg-red-400 rounded-b-md p-1 font-semibold text-white">Reiniciar</button>                  
-        </div>
-
-        <h2 class="font-bold text-[18px] text-gray-400">INTERACCIONES</h2>
-
-        <hr class="bg-gray-300 h-[2px] w-full max-w-[600px] mb-2 border-0">
-
-        <div class="bg-white rounded-md min-w-[300px] w-full max-w-[650px] flex flex-col shadow-md mb-8">
-            <div class="flex justify-between items-center p-4">
-                <h2 class="font-semibold text-gray-400">Contacto:</h2>
-                <p class="font-semibold text-[32px] text-gray-400 me-12">{{$stats->interacciones_contacto}}</p>
-            </div>
-            <button id="restart_contact" class="bg-red-400 rounded-b-md p-1 font-semibold text-white">Reiniciar</button>                  
-        </div>
-
-        <div class="bg-white rounded-md min-w-[300px] w-full max-w-[650px] flex flex-col shadow-md mb-8">
-            <div class="flex justify-between items-center p-4">
-                <h2 class="font-semibold text-gray-400">LinkedIn:</h2>
-                <p class="font-semibold text-[32px] text-gray-400 me-12">{{$stats->vistas_linkedin}}</p>
-            </div>
-            <button id="restart_linkedin" class="bg-red-400 rounded-b-md p-1 font-semibold text-white">Reiniciar</button>                  
-        </div>
-
-        <div class="bg-white rounded-md min-w-[300px] w-full max-w-[650px] flex flex-col shadow-md mb-8">
-            <div class="flex justify-between items-center p-4">
-                <h2 class="font-semibold text-gray-400">GitHub:</h2>
-                <p class="font-semibold text-[32px] text-gray-400 me-12">{{$stats->visitas_github}}</p>
-            </div>
-            <button id="restart_github" class="bg-red-400 rounded-b-md p-1 font-semibold text-white">Reiniciar</button>                  
-        </div>
-    </div> --}}
 </body>

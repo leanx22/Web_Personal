@@ -76,8 +76,10 @@ function showInputError(elementID)
 {
     //var input = $("#"+elementID);
     var input = document.getElementById(elementID);
-    input.classList.remove("bg-gray-100");
-    input.classList.add("bg-red-100");
+    //input.classList.remove("bg-gray-100");
+    //input.classList.add("bg-red-100");
+    input.classList.add("border");
+    input.classList.add("border-red-400");
     // $("#"+elementID).removeClass("bg-gray-100");
     // $("#"+elementID).addClass("bg-red-200");
 }

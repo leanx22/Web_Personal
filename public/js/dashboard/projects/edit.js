@@ -13,14 +13,14 @@ $(function(){
 });
 
 function editProject()
-{  
-    var form_data = new FormData($("#form")[0]);  
-    
-    var file = $('#img')[0].files[0];    
+{
+    var form_data = new FormData($("#form")[0]);
+
+    var file = $('#img')[0].files[0];
     if(file)
     {
         form_data.append('img', file);
-    }    
+    }
 
     $.ajax({
        type:'POST',
@@ -38,7 +38,7 @@ function editProject()
         window.location.replace(WEB_LINK+"proyectos");
 
     }).fail(function(xhr, status, error){
-        
+
         if(xhr.responseText)
         {
             var response = JSON.parse(xhr.responseText);
@@ -51,7 +51,7 @@ function editProject()
                     //element[0] accede a la id del elemento.
                     //element[1] accede a otro array que contiene los errores.
                     showInputError(element[0]);
-                    
+
                 });
             }
             else
@@ -60,7 +60,7 @@ function editProject()
                 toggleErrors();
             }
         }
-        
+
 
 
     }).always();
@@ -69,7 +69,7 @@ function editProject()
 
 function deleteProject()
 {
-    var form_data = new FormData($("#del_form")[0]);  
+    var form_data = new FormData($("#del_form")[0]);
     $.ajax({
        type:'DELETE',
        async:true,
@@ -93,10 +93,10 @@ function deleteProject()
 function showInputError(elementID)
 {
     var input = document.getElementById(elementID);
-    input.classList.remove("bg-gray-100");
-    input.classList.add("bg-red-100");
+    // input.classList.remove("bg-gray-100");
+    // input.classList.add("bg-red-100");
     input.classList.add("border");
-    input.classList.add("border-red-400");    
+    input.classList.add("border-red-400");
 }
 
 function toggleErrors()
@@ -112,7 +112,7 @@ function addErrors(errors)
         str+="<li><strong>"+element[0]+"</strong>: "+element[1]+"</li><br>";
     });
     $("#lista_errores").html(str);
-    
+
 }
 
 function addSingleError(message)
