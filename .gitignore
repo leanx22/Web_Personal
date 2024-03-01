@@ -3,6 +3,7 @@
 /public_html/build
 /public_html/hot
 /public_html/storage
+/public_html/img/projects
 /storage/*.key
 /vendor
 .env
