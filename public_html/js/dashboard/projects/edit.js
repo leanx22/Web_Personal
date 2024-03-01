@@ -84,7 +84,7 @@ function deleteProject()
        contentType:false
     }).done(function(response){
 
-        //window.location.replace(WEB_LINK+"proyectos");
+        window.location.replace(WEB_LINK+"proyectos");
 
     }).fail(function(xhr, status, error){
         console.error(error);
