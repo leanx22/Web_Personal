@@ -100,7 +100,7 @@ async function printProjects()
             
             bloque += '<div class="col-span-12 md:col-span-6 flex flex-col bg-white mx-2 xl:mx-20 min-h-[428px] min-w-[320px] w-auto rounded-lg shadow-lg mb-14 hover:scale-[1.02] auto_fade">\
             <div class="relative">\
-              <img class="rounded-t-lg min-w-full min-h-full" src="img/'+project.image+'" alt="Imagen del proyecto">\
+              <img class="rounded-t-lg min-w-full max-h-[350px]" src="img/'+project.image+'" alt="Imagen del proyecto">\
               <div class="absolute inset-0 flex items-end justify-end p-4">\
               '+tagshtml+'\
               </div>\
